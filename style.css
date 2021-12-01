@@ -1,0 +1,27 @@
+input {
+    display: block;
+    margin: 5%;
+}
+
+textarea {
+    display: block;
+    margin: 3% 5%;
+    height: 80px;
+}
+
+button {
+    margin: 0 5%;
+}
+
+label {
+    margin-left: 5%;
+}
+
+.flag-container {
+    margin-top: 2%;
+    margin-left: 5%;
+}
+.flag-container button {
+    margin-right: 1%;
+    margin-left: 0;
+}
