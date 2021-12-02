@@ -1,8 +1,8 @@
 'use strict';
 
-import { createDOMElement, getDOMElement } from './DOMUtils.js';
-import { chooseLocation } from './mapHandler.js'
-import { submitBtn } from './mapListener.js';
+import { createDOMElement, getDOMElement } from '../DOMUtils.js';
+import { chooseLocation } from '../mapHandler.js'
+import { submitBtn } from '../mapListener.js';
 
 export const createElements = () => {
     const userInterfaceContainer = getDOMElement('user-interface');

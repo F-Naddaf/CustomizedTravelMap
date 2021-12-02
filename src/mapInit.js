@@ -1,12 +1,9 @@
 'use strict';
 
-import { createElements } from './mapViews.js'
-import { getIPData } from './ipInfoAPI.js'
-
+import { createSignInPage } from './views/signInPageViews.js'
 
 const initializeMap = () => {
-    document.body.appendChild(createElements());
+    createSignInPage();
 }
 
 window.addEventListener('load', initializeMap);
-window.addEventListener('load', getIPData());
