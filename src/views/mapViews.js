@@ -5,7 +5,7 @@ import { chooseLocation } from '../mapHandler.js'
 import { submitBtn } from '../mapListener.js';
 
 export const createElements = () => {
-    const userInterfaceContainer = getDOMElement('user-interface');
+    const userInterfaceContainer = getDOMElement('user-interface-container');
 
     const addLocationElement = createDOMElement('input', { id: 'location-input' });
     addLocationElement.addEventListener('keyup', chooseLocation);

@@ -1,6 +1,5 @@
 'use strict';
 
-import { getDOMElement } from './DOMUtils.js'
 import { userInfo } from './userData.js'
 
 let userLat = 0;
@@ -21,13 +20,7 @@ export async function getIPData() {
             userInfo.userIP = jsonIPData.ip;
             userInfo.userLat = userLat;
             userInfo.userLon = userLon;
-            userInfo.userCountry = jsonIPData.country;
-            //             getDOMElement('ip-result').value = `User IP: ${userIP},
-
-            // User Region: ${jsonIPData.region},
-
-            // User Location: ${userLocation}
-            // `;
+            userInfo.userCountry = jsonIPData.region;
             console.log(userInfo);
             return [userLat, userLon]
         }

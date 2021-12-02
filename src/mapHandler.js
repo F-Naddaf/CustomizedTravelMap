@@ -1,15 +1,7 @@
 'use strict';
 
 import { createDOMElement, getDOMElement } from './DOMUtils.js';
-import { fetchLocationData, visitedCountry, visitedLocation, visitedLocationCheck, visitedCountryFlag } from './positionStackAPI.js'
-import { logIn } from '../mapListener.js'
-
-export const signIn = () => {
-    const signLogBtn = getDOMElement('sign-or-log');
-    signLogBtn.addEventListener('click', logIn);
-}
-
-
+import { fetchLocationData, visitedCountry, visitedLocation, visitedLocationCheck, visitedCountryFlag } from './APIs/positionStackAPI.js'
 
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
 

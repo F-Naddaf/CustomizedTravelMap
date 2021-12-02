@@ -1,6 +1,7 @@
 'use strict';
 
 import { createDOMElement, getDOMElement } from '../DOMUtils.js'
+import { logIn } from '../mapListener.js'
 
 export const createSignInPage = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
@@ -19,12 +20,7 @@ export const createSignInPage = () => {
     const appSlogan = createDOMElement('h1', { id: 'app-slogan' });
     appSlogan.innerHTML = `Trace, Share & <br>Memorize your <br>trips!`;
 
-    const signLogBtn = createDOMElement('button', { id: 'sign-or-log' });
-    const buttonIcon = createDOMElement('i', { className: 'fas fa-map-marker-alt' });
-    const buttonText = createDOMElement('h2', { id: 'button-text' });
-    buttonText.innerHTML = 'Sign In'
-    signLogBtn.appendChild(buttonIcon);
-    signLogBtn.appendChild(buttonText);
+    const logInButton = createTheLogInButton();
 
     const declarationMessage = createDOMElement('h5', { id: 'declaration-message' });
     declarationMessage.innerHTML = `For the purpose of this project,
@@ -33,8 +29,28 @@ export const createSignInPage = () => {
 
     userInterfaceContent.appendChild(titleContainer);
     userInterfaceContent.appendChild(appSlogan);
-    userInterfaceContent.appendChild(signLogBtn);
+    userInterfaceContent.appendChild(logInButton);
     userInterfaceContent.appendChild(declarationMessage);
 
     userInterfaceContainer.appendChild(userInterfaceContent);
+};
+
+const createTheLogInButton = () => {
+    const signLogBtn = createDOMElement('button', { id: 'sign-or-log' });
+    const buttonIcon = createDOMElement('i', { className: 'fas fa-map-marker-alt' });
+    const buttonText = createDOMElement('h2', { id: 'button-text' });
+    buttonText.innerHTML = 'Sign In'
+    signLogBtn.appendChild(buttonIcon);
+    signLogBtn.appendChild(buttonText);
+
+
+    signLogBtn.addEventListener('click', () => {
+        // if (userIP) {
+
+        // } else {
+
+        // }
+        logIn();
+    });
+    return signLogBtn;
 };
