@@ -1,7 +1,7 @@
 'use strict';
 
-import { getDOMElement } from "./DOMUtils.js";
-import { distance } from './calculateDistance.js'
+import { getDOMElement } from '../DOMUtils.js'
+import { distance } from '../calculateDistance.js'
 import { getIPData } from './ipInfoAPI.js'
 
 export const visitedCountry = [];

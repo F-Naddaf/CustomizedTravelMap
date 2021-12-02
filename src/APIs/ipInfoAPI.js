@@ -1,6 +1,6 @@
 'use strict';
 
-import { userInfo } from './userData.js'
+import { userInfo } from '../userData.js'
 
 let userLat = 0;
 let userLon = 0;
