@@ -1,7 +1,8 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { showTripTab, showFiguresTab, showMapTab, chooseLocation } from '../mapHandler.js'
+import { showTripTab, showFiguresTab, showMapTab } from '../mapHandler.js';
+import { displayForm } from '../mapListener.js';
 
 export const createTabElements = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
@@ -34,6 +35,7 @@ export const createTabElements = () => {
     const addTripText = createDOMElement('h2', { id: 'add-trip-txt' });
 
     addTripButton.appendChild(plusIcon);
+    addTripButton.addEventListener('click', displayForm);
     addTripText.innerHTML = 'Add Trip';
 
     dashedWindow.appendChild(addTripButton);
@@ -41,21 +43,15 @@ export const createTabElements = () => {
 
     tripTabContent.appendChild(dashedWindow);
 
-    // const addLocationElement = createDOMElement('input', { id: 'location-input' });
-    // addLocationElement.addEventListener('keyup', chooseLocation);
-
     // const displayLocationResultElement = createDOMElement('textarea', { id: 'location-result' });
 
     // const addBtnElement = document.createElement('button');
+    // addBtnElement.innerHTML = 'Submit';
     // addBtnElement.addEventListener('click', submitBtn);
 
     // const displayIPResultElement = createDOMElement('textarea', { id: 'ip-result' });
 
-    // addBtnElement.innerHTML = 'Submit';
-
-    // userInterfaceContent.appendChild(navOverlay);
     userInterfaceContent.appendChild(tripTabContent);
-    // userInterfaceContent.appendChild(addLocationElement);
     // userInterfaceContent.appendChild(displayLocationResultElement);
     // userInterfaceContent.appendChild(addBtnElement);
     // userInterfaceContent.appendChild(displayIPResultElement);
@@ -94,7 +90,6 @@ export const createTabElements = () => {
     navOverlay.style.top = '0px';
     userInterfaceContent.appendChild(navOverlay);
     userInterfaceContent.appendChild(figuresTabContent);
-    userInterfaceContainer.appendChild(userInterfaceContent);
 
     userInterfaceContainer.appendChild(userInterfaceContent);
 }

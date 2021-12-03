@@ -21,6 +21,7 @@ export const showTripTab = () => {
 }
 
 export const showFiguresTab = () => {
+    createTabElements();
     const visitedCountryCounter = getDOMElement('country-counter');
     visitedCountryCounter.innerHTML = `You have visited 0/193`;
     const figureCountryImage = getDOMElement('figure-country-image');
@@ -50,6 +51,7 @@ export const showFiguresTab = () => {
 }
 
 export const showMapTab = () => {
+    createTabElements();
     const tripTab = getDOMElement('trip-tab');
     const figuresTab = getDOMElement('figures-tab');
     const MapTab = getDOMElement('map-tab');
@@ -62,6 +64,23 @@ export const showMapTab = () => {
     figuresTabContent.style.display = 'none';
 }
 
+export function addCoverPhoto() {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        getDOMElement('profile-cover').style.backgroundImage = `url(${reader.result})`;
+        // localStorage.setItem('userCoverPhoto', reader.result);
+    });
+    reader.readAsDataURL(this.files[0]);
+}
+
+export function addProfilePicture() {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        getDOMElement('profile-photo').style.backgroundImage = `url(${reader.result})`;
+        // localStorage.setItem('userCoverPhoto', reader.result);
+    });
+    reader.readAsDataURL(this.files[0]);
+}
 
 let timeout = null;
 export const chooseLocation = () => {

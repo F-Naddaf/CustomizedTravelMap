@@ -1,15 +1,37 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { showTripTab, showFiguresTab, showMapTab } from '../mapHandler.js'
+import { showTripTab, showFiguresTab, showMapTab, addCoverPhoto, addProfilePicture } from '../mapHandler.js'
 
 export const createTheTab = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
     const userInterfaceContent = getDOMElement('user-interface-content');
     clearDOMElement(userInterfaceContent);
 
-    const profileCover = createDOMElement('div', { id: 'profile-cover' }); //To be changed later
+    const profileCover = createDOMElement('div', { id: 'profile-cover' });
+    const addProfileCover = createDOMElement('input', { id: 'add-profile-cover' });
+    addProfileCover.setAttribute('type', 'file');
+    addProfileCover.setAttribute('hidden', 'true');
+    addProfileCover.setAttribute('accept', 'image/jpg');
+    const addProfileCoverLabel = createDOMElement('label');
+    addProfileCoverLabel.setAttribute('for', 'add-profile-cover');
+    const addProfileCoverIcon = createDOMElement('i', { id: 'cover-icon', className: 'fas fa-camera' });
+    addProfileCoverLabel.appendChild(addProfileCoverIcon);
+    addProfileCover.addEventListener('change', addCoverPhoto);
+    profileCover.appendChild(addProfileCover);
+
     const profilePhoto = createDOMElement('div', { id: 'profile-photo' }); //To be changed later
+    const addProfilePhoto = createDOMElement('input', { id: 'add-profile-photo' });
+    addProfilePhoto.setAttribute('type', 'file');
+    addProfilePhoto.setAttribute('hidden', 'true');
+    addProfilePhoto.setAttribute('accept', 'image/jpg');
+    const addProfilePhotoLabel = createDOMElement('label');
+    addProfilePhotoLabel.setAttribute('for', 'add-profile-photo');
+    const addProfilePhotoIcon = createDOMElement('i', { id: 'profile-icon', className: 'fas fa-camera' });
+    addProfilePhotoLabel.appendChild(addProfilePhotoIcon);
+    addProfilePhoto.addEventListener('change', addProfilePicture);
+    profilePhoto.appendChild(addProfilePhoto);
+
     const profileName = createDOMElement('h1', { id: 'profile-name' });
     profileName.innerHTML = window.localStorage.getItem('userName');
 
@@ -41,7 +63,9 @@ export const createTheTab = () => {
     navOverlay.appendChild(appNav);
 
     userInterfaceContent.appendChild(profileCover);
+    userInterfaceContent.appendChild(addProfileCoverLabel);
     userInterfaceContent.appendChild(profilePhoto);
+    userInterfaceContent.appendChild(addProfilePhotoLabel);
     userInterfaceContent.appendChild(profileName);
     userInterfaceContent.appendChild(visitedCountryFlagContainer);
     userInterfaceContent.appendChild(navOverlay);

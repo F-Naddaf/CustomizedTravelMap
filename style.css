@@ -3,6 +3,28 @@ body {
     overflow: hidden;
     margin: 0;
 }
+input {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 2px solid #2F2F2F;
+    color: #744D45;
+    font-weight: bold;
+    margin: 5px;
+}
+input[type='text'] {
+    font-size: 1rem;
+    width: 200px;
+}
+input[type='date'] {
+    font-size: 0.7rem;
+    width: 118px;
+}
+input[type='number'] {
+    font-size: 0.7rem;
+    width: 65px;
+    padding: 5px 8px;
+}
 #user-interface-container {
     position: relative;
 }
@@ -40,14 +62,6 @@ body {
 }
 
 #user-name-input {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 10px 16px;
-    border-radius: 20px;
-    border: 2px solid #2F2F2F;
-    color: #744D45;
-    font-size: 1rem;
-    font-weight: bold;
-    width: 200px;
     margin: 0 20% 5%;
 }
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -92,15 +106,40 @@ body {
     width: 100vw;
     height: 150px;
     background-color: #2F2F2F;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+#cover-icon {
+    margin-left: 80%;
+    position: absolute;
+    top: 23%;
+    color: #E0E0E0;
+    font-size: 30px;
 }
 #profile-photo {
     width: 140px;
     height: 140px;
     border-radius: 50%;
     background-color: #C3907F;
+    background-size: cover;
+    background-repeat: no-repeat;
     position: absolute;
-    top: 25%;
+    top: 18%;
     left: 5%;
+}
+#profile-icon {
+    position: fixed;
+    margin-top: 5%;
+    margin-left: 25%;
+    padding-left: 4px;
+    padding-top: 4px;
+    z-index: 2;
+    color: #E0E0E0;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    background-color:#1E282E;
 }
 #profile-name {
     position: relative;
@@ -194,6 +233,23 @@ body {
       color: #1E282E;
       font-size: 1.7rem;
   }
+
+  #form-container {
+      margin: 0 5%;
+      border: 3px solid #C3907F;
+  }
+  #travelled-by-text, #stayed-in-text,
+  #travelled-with-text {
+      display: inline-block;
+      margin: 5px;
+  }
+  #visited-attraction-name {
+      width: 120px;
+      font-size: 0.68rem;
+      padding: 10px 8px;
+  }
+
+
 
   #figures-tab-content {
       display: flex;
