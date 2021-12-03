@@ -92,6 +92,16 @@ export const chooseLocation = () => {
     }, 1500);
 }
 
+export function addLocationHeaderPhoto() {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        const locationHeaderPhoto = reader.result;
+        console.log(locationHeaderPhoto);
+        // localStorage.setItem('userCoverPhoto', reader.result);
+    });
+    reader.readAsDataURL(this.files[0]);
+}
+
 let countryFlagName = '';
 export const addCountry = () => {
     let countryCount = visitedCountry.length;

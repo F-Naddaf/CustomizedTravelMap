@@ -18,13 +18,20 @@ input[type='text'] {
 }
 input[type='date'] {
     font-size: 0.7rem;
-    width: 118px;
+    padding: 5px 8px;
+    width: 120px;
 }
 input[type='number'] {
     font-size: 0.7rem;
     width: 65px;
     padding: 5px 8px;
 }
+input[type='submit'] {
+    font-size: 1rem;
+    margin-top: 5%;
+    margin-left: 30%;
+}
+
 #user-interface-container {
     position: relative;
 }
@@ -236,45 +243,71 @@ input[type='number'] {
 
   #form-container {
       margin: 0 5%;
+      padding: 3%;
       border: 3px solid #C3907F;
   }
-  #travelled-by-text, #stayed-in-text,
-  #travelled-with-text {
+  #location-input {
+    width: 145px;
+  }
+  #header-location-photo {
       display: inline-block;
-      margin: 5px;
+      margin-left: 2%;
   }
-  #visited-attraction-name {
-      width: 120px;
-      font-size: 0.68rem;
-      padding: 10px 8px;
-  }
+  #add-header-location-photo {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+#header-label {
+    display: inline-block;
+    padding: 8px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #1E282E;
+    background-color: #E0E0E0;
+    border: 2px solid #2F2F2F;
+    border-radius: 15px 0 15px 0;
+    cursor: pointer;
+}
+#travelled-by-text, #stayed-in-text,
+#travelled-with-text {
+    display: inline-block;
+    margin: 5px;
+}
+#visited-attraction-name {
+    width: 120px;
+    font-size: 0.68rem;
+    padding: 10px 8px;
+}
+#save-trip-info {
+    color: #E0E0E0;
+    background-color: #1E282E;
+}
 
-
-
-  #figures-tab-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
-      justify-items: center;
-  }
-  #figure-country-card, #figure-world-card {
+#figures-tab-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    justify-items: center;
+}
+#figure-country-card, #figure-world-card {
     width: 150px;
     margin-top: 50%;
     border-radius: 15px;
     background-color: #C3907F;
-  }
-  #figure-location-card, #figure-distance-card {
+}
+#figure-location-card, #figure-distance-card {
     width: 150px;
     margin-top: 25%;
     border-radius: 15px;
     background-color: #C3907F;
-  }
-  #figure-country-image, #figure-world-image,
-  #figure-location-image, #figure-distance-image {
-      width: 100%;
-      border-radius: 15px 15px 0 0;
-  }
-  #country-counter, #world-percentage,
-  #location-counter, #crossed-distance {
+}
+#figure-country-image, #figure-world-image,
+#figure-location-image, #figure-distance-image {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+#country-counter, #world-percentage,
+#location-counter, #crossed-distance {
     text-align: center;
-  }
+}
