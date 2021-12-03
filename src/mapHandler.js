@@ -1,9 +1,67 @@
 'use strict';
 
-import { createDOMElement, getDOMElement } from './DOMUtils.js';
+import { createDOMElement, getDOMElement, clearDOMElement } from './DOMUtils.js';
 import { fetchLocationData, visitedCountry, visitedLocation, visitedLocationCheck, visitedCountryFlag } from './APIs/positionStackAPI.js'
+import { createTabElements } from './views/appViews.js';
 
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
+
+export const showTripTab = () => {
+    createTabElements();
+    const tripTab = getDOMElement('trip-tab');
+    const figuresTab = getDOMElement('figures-tab');
+    const MapTab = getDOMElement('map-tab');
+    tripTab.className = 'tab-links active';
+    figuresTab.className = 'tab-links';
+    MapTab.className = 'tab-links';
+    const tripTabContent = getDOMElement('trip-tab-content');
+    const figuresTabContent = getDOMElement('figures-tab-content');
+    tripTabContent.style.display = 'flex';
+    figuresTabContent.style.display = 'none';
+}
+
+export const showFiguresTab = () => {
+    const visitedCountryCounter = getDOMElement('country-counter');
+    visitedCountryCounter.innerHTML = `You have visited 0/193`;
+    const figureCountryImage = getDOMElement('figure-country-image');
+    figureCountryImage.src = 'media/Flags.png';
+    const coveredWorldPercentage = getDOMElement('world-percentage');
+    coveredWorldPercentage.innerHTML = `You have covered 0% of the World`;
+    const figureWorldImage = getDOMElement('figure-world-image');
+    figureWorldImage.src = 'media/World.jpg';
+    const visitedLocationCounter = getDOMElement('location-counter');
+    visitedLocationCounter.innerHTML = `You have visited 0 Locations`;
+    const figureLocationImage = getDOMElement('figure-location-image');
+    figureLocationImage.src = 'media/Locations.jpg';
+    const crossedDistanceCounter = getDOMElement('crossed-distance');
+    crossedDistanceCounter.innerHTML = `You have crossed 0 KM`;
+    const figureDistanceImage = getDOMElement('figure-distance-image');
+    figureDistanceImage.src = 'media/Kilometers.jpg';
+    const tripTab = getDOMElement('trip-tab');
+    const figuresTab = getDOMElement('figures-tab');
+    const MapTab = getDOMElement('map-tab');
+    tripTab.className = 'tab-links';
+    figuresTab.className = 'tab-links active';
+    MapTab.className = 'tab-links';
+    const tripTabContent = getDOMElement('trip-tab-content');
+    const figuresTabContent = getDOMElement('figures-tab-content');
+    tripTabContent.style.display = 'none';
+    figuresTabContent.style.display = 'flex';
+}
+
+export const showMapTab = () => {
+    const tripTab = getDOMElement('trip-tab');
+    const figuresTab = getDOMElement('figures-tab');
+    const MapTab = getDOMElement('map-tab');
+    tripTab.className = 'tab-links';
+    figuresTab.className = 'tab-links';
+    MapTab.className = 'tab-links active';
+    const tripTabContent = getDOMElement('trip-tab-content');
+    const figuresTabContent = getDOMElement('figures-tab-content');
+    tripTabContent.style.display = 'none';
+    figuresTabContent.style.display = 'none';
+}
+
 
 let timeout = null;
 export const chooseLocation = () => {

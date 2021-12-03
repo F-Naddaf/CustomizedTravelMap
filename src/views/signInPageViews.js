@@ -20,6 +20,10 @@ export const createSignInPage = () => {
     const appSlogan = createDOMElement('h1', { id: 'app-slogan' });
     appSlogan.innerHTML = `Trace, Share & <br>Memorize your <br>trips!`;
 
+    const userNameInput = createDOMElement('input', { id: 'user-name-input' });
+    userNameInput.setAttribute('type', 'text');
+    userNameInput.placeholder = 'Enter Your Name ..';
+
     const logInButton = createTheLogInButton();
 
     const declarationMessage = createDOMElement('h5', { id: 'declaration-message' });
@@ -29,6 +33,7 @@ export const createSignInPage = () => {
 
     userInterfaceContent.appendChild(titleContainer);
     userInterfaceContent.appendChild(appSlogan);
+    userInterfaceContent.appendChild(userNameInput);
     userInterfaceContent.appendChild(logInButton);
     userInterfaceContent.appendChild(declarationMessage);
 

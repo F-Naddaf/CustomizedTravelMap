@@ -24,3 +24,9 @@ export const createDOMElement = (tag, options) => {
 export const getDOMElement = (id) => {
     return document.getElementById(id);
 };
+
+// This function removes all the html inside the given element
+
+export const clearDOMElement = (DOMElement) => {
+    DOMElement.innerHTML = '';
+};

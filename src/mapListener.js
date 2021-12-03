@@ -1,13 +1,15 @@
 'use strict';
 
-import { addCountry, displayFlag, displayVisitedLocation } from './mapHandler.js'
+import { showFiguresTab, addCountry, displayFlag, displayVisitedLocation } from './mapHandler.js'
 import { getIPData } from './APIs/ipInfoAPI.js'
-import { createElements } from './views/mapViews.js'
+import { createTabElements } from './views/appViews.js'
+import { createTheTab } from './views/profileViews.js';
 
 export const logIn = () => {
     getIPData();
-    // createElements();
+    createTheTab();
 }
+
 export const submitBtn = () => {
     addCountry();
     displayFlag();

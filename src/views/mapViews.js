@@ -3,41 +3,65 @@
 import { createDOMElement, getDOMElement } from '../DOMUtils.js';
 import { chooseLocation } from '../mapHandler.js'
 import { submitBtn } from '../mapListener.js';
+import { clearDOMElement } from '../DOMUtils.js';
 
 export const createElements = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
+    const userInterfaceContent = getDOMElement('user-interface-content');
+    clearDOMElement(userInterfaceContent);
 
-    const addLocationElement = createDOMElement('input', { id: 'location-input' });
-    addLocationElement.addEventListener('keyup', chooseLocation);
+    const navOverlay = createDOMElement('div', { id: 'nav-overlay' });
+    const appNav = createDOMElement('div', { id: 'app-nav', className: 'tab' });
+    const tripTab = createDOMElement('button', { id: 'trip-tab', className: 'tab-links active' });
+    const figuresTab = createDOMElement('button', { id: 'figures-tab', className: 'tab-links' });
+    const mapTab = createDOMElement('button', { id: 'map-tab', className: 'tab-links' });
 
-    const displayLocationResultElement = createDOMElement('textarea', { id: 'location-result' });
+    tripTab.textContent = 'Trip';
+    figuresTab.textContent = 'Figures';
+    mapTab.textContent = 'Map';
 
-    const addBtnElement = document.createElement('button');
-    addBtnElement.addEventListener('click', submitBtn);
+    appNav.appendChild(tripTab);
+    appNav.appendChild(figuresTab);
+    appNav.appendChild(mapTab);
 
-    const visitedCountryCounter = createDOMElement('label', { id: 'country-counter' });
-    const coveredWorldPercentage = createDOMElement('label', { id: 'world-percentage' });
-    const visitedLocationCounter = createDOMElement('label', { id: 'location-counter' });
-    const visitedCountryFlagContainer = createDOMElement('div', { id: 'country-flag-container', className: 'flag-container' });
+    navOverlay.appendChild(appNav);
 
-    const displayIPResultElement = createDOMElement('textarea', { id: 'ip-result' });
-    const crossedDistanceElement = createDOMElement('label', { id: 'crossed-distance' });
+    const dashedWindow = createDOMElement('div', { id: 'dashed-window' });
+    const addTripButton = createDOMElement('button', { id: 'add-trip-btn' });
+    const plusIcon = createDOMElement('i', { className: 'fas fa-plus' });
+    const addTripText = createDOMElement('h2', { id: 'add-trip-txt' });
 
-    addBtnElement.innerHTML = 'Submit';
-    visitedCountryCounter.innerHTML = `You have visited 0/193`;
-    coveredWorldPercentage.innerHTML = `You have covered 0% of the World`;
-    visitedLocationCounter.innerHTML = `You have visited 0 Locations`;
-    crossedDistanceElement.innerHTML = `You have crossed 0 KM`;
+    addTripButton.appendChild(plusIcon);
+    addTripText.innerHTML = 'Add Trip';
 
-    userInterfaceContainer.appendChild(addLocationElement);
-    userInterfaceContainer.appendChild(displayLocationResultElement);
-    userInterfaceContainer.appendChild(addBtnElement);
-    userInterfaceContainer.appendChild(visitedCountryCounter);
-    userInterfaceContainer.appendChild(coveredWorldPercentage);
-    userInterfaceContainer.appendChild(visitedLocationCounter);
-    userInterfaceContainer.appendChild(visitedCountryFlagContainer);
-    userInterfaceContainer.appendChild(displayIPResultElement);
-    userInterfaceContainer.appendChild(crossedDistanceElement);
+    dashedWindow.appendChild(addTripButton);
+    dashedWindow.appendChild(addTripText);
 
-    return userInterfaceContainer;
+    // const addLocationElement = createDOMElement('input', { id: 'location-input' });
+    // addLocationElement.addEventListener('keyup', chooseLocation);
+
+    // const displayLocationResultElement = createDOMElement('textarea', { id: 'location-result' });
+
+    // const addBtnElement = document.createElement('button');
+    // addBtnElement.addEventListener('click', submitBtn);
+
+    // const visitedCountryFlagContainer = createDOMElement('div', { id: 'country-flag-container', className: 'flag-container' });
+
+    // const displayIPResultElement = createDOMElement('textarea', { id: 'ip-result' });
+
+    // addBtnElement.innerHTML = 'Submit';
+
+    userInterfaceContent.appendChild(navOverlay);
+    userInterfaceContent.appendChild(dashedWindow);
+    // userInterfaceContent.appendChild(addLocationElement);
+    // userInterfaceContent.appendChild(displayLocationResultElement);
+    // userInterfaceContent.appendChild(addBtnElement);
+    // userInterfaceContent.appendChild(visitedCountryCounter);
+    // userInterfaceContent.appendChild(coveredWorldPercentage);
+    // userInterfaceContent.appendChild(visitedLocationCounter);
+    // userInterfaceContent.appendChild(visitedCountryFlagContainer);
+    // userInterfaceContent.appendChild(displayIPResultElement);
+    // userInterfaceContent.appendChild(crossedDistanceElement);
+
+    userInterfaceContainer.appendChild(userInterfaceContent);
 }

@@ -2,7 +2,6 @@
 
 import { getDOMElement } from '../DOMUtils.js'
 import { distance } from '../calculateDistance.js'
-import { getIPData } from './ipInfoAPI.js'
 
 export const visitedCountry = [];
 export const visitedLocationCheck = [];
@@ -31,9 +30,9 @@ Flag: ${jsonLocationData.data[0].country_module.flag}
 
                 const destinationLat = jsonLocationData.data[0].latitude;
                 const destinationLon = jsonLocationData.data[0].longitude;
-                const userLocation = await getIPData();
-                const userLat = userLocation[0];
-                const userLon = userLocation[1];
+
+                const userLat = parseFloat(window.localStorage.getItem('userLat'));
+                const userLon = parseFloat(window.localStorage.getItem('userLon'));
                 if (destinationLat !== 0 && destinationLon !== 0) {
                     crossedDistance += distance(userLat, destinationLat, userLon, destinationLon);
                     getDOMElement('crossed-distance').innerHTML = `You have crossed ${crossedDistance.toFixed(2)} KM`;
