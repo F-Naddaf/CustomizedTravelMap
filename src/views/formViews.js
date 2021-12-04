@@ -1,8 +1,7 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { chooseLocation, addLocationHeaderPhoto, saveTrip } from '../mapHandler.js';
-import { logIn } from '../mapListener.js';
+import { addLocationHeaderPhoto, saveTrip } from '../mapHandler.js';
 
 export const createFormElement = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
@@ -144,8 +143,6 @@ export const createFormElement = () => {
 
     const saveTripInfo = createDOMElement('button', { id: 'save-trip-info' });
     saveTripInfo.innerHTML = 'Save Trip';
-    // saveTripInfo.setAttribute('type', 'submit');
-    // saveTripInfo.setAttribute('value', 'Save Trip');
     saveTripInfo.addEventListener('click', saveTrip);
 
     attendedEventFieldset.appendChild(attendedEventLegend);

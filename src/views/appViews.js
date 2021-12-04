@@ -43,12 +43,7 @@ export const createTabElements = () => {
 
     tripTabContent.appendChild(dashedWindow);
 
-    // const addBtnElement = document.createElement('button');
-    // addBtnElement.innerHTML = 'Submit';
-    // addBtnElement.addEventListener('click', submitBtn);
-
     userInterfaceContent.appendChild(tripTabContent);
-    // userInterfaceContent.appendChild(addBtnElement);
 
     const figuresTabContent = createDOMElement('div', { id: 'figures-tab-content', className: 'tab-content' });
 

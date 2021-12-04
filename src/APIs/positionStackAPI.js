@@ -22,6 +22,7 @@ export async function fetchLocationData(url) {
                 };
                 visitedCountryFlag.push(visitedCountryFlagObject);
                 localStorage.setItem('visitedCountries', JSON.stringify(visitedCountryFlag));
+
                 const destinationLat = jsonLocationData.data[0].latitude;
                 const destinationLon = jsonLocationData.data[0].longitude;
 
