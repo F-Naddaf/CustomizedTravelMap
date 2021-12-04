@@ -3,6 +3,9 @@ body {
     overflow: hidden;
     margin: 0;
 }
+button {
+    border: none;
+}
 input {
     background-color: rgba(255, 255, 255, 0.05);
     padding: 10px 16px;
@@ -25,11 +28,6 @@ input[type='number'] {
     font-size: 0.7rem;
     width: 65px;
     padding: 5px 8px;
-}
-input[type='submit'] {
-    font-size: 1rem;
-    margin-top: 5%;
-    margin-left: 30%;
 }
 
 #user-interface-container {
@@ -191,8 +189,8 @@ input[type='submit'] {
     overflow: hidden;
     padding: 0 5%;
     margin-bottom: 10%;
-  }
-  .tab button {
+}
+.tab button {
     background-color: inherit;
     float: left;
     border: none;
@@ -205,15 +203,15 @@ input[type='submit'] {
     font-size: 1.5rem;
     color: #1E282E;
     font-weight: bold;
-  }
-  .tab button:hover {
+}
+.tab button:hover {
     background-color: #C3907F;
-  }
-  .tab button.active {
+}
+.tab button.active {
     border-bottom: 3px solid #2F2F2F;
-  }
+}
 
-  #dashed-window {
+#dashed-window {
     position: relative;
     top:70px;
     border: 5px dotted #744D45;
@@ -222,38 +220,38 @@ input[type='submit'] {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  #add-trip-btn {
-      margin-right: 5%;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #1E282E;
-      border-color: #C3907F;
-      cursor: pointer;
-  }
-  .fas.fa-plus {
+}
+#add-trip-btn {
+    margin-right: 5%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #1E282E;
+    border-color: #C3907F;
+    cursor: pointer;
+}
+.fas.fa-plus {
     padding: 5%;
     color: #C3907F;
-  }
-  #add-trip-txt {
-      color: #1E282E;
-      font-size: 1.7rem;
-  }
+}
+#add-trip-txt {
+    color: #1E282E;
+    font-size: 1.7rem;
+}
 
-  #form-container {
-      margin: 0 5%;
-      padding: 3%;
-      border: 3px solid #C3907F;
-  }
-  #location-input {
+#form-container {
+    margin: 0 5%;
+    padding: 3%;
+    border: 3px solid #C3907F;
+}
+#location-input {
     width: 145px;
-  }
-  #header-location-photo {
-      display: inline-block;
-      margin-left: 2%;
-  }
-  #add-header-location-photo {
+}
+#header-location-photo {
+    display: inline-block;
+    margin-left: 2%;
+}
+#add-header-location-photo {
     padding: 0;
     border: none;
     border-radius: 0;
@@ -280,8 +278,17 @@ input[type='submit'] {
     padding: 10px 8px;
 }
 #save-trip-info {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: 30%;
+    padding: 10px 16px;
+    border-radius: 20px;
     color: #E0E0E0;
     background-color: #1E282E;
+}
+#save-trip-info:hover, #save-trip-info:focus {
+    transform: scale(1.2);
 }
 
 #figures-tab-content {

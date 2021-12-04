@@ -1,7 +1,7 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { chooseLocation, addLocationHeaderPhoto } from '../mapHandler.js';
+import { chooseLocation, addLocationHeaderPhoto, saveTrip } from '../mapHandler.js';
 import { logIn } from '../mapListener.js';
 
 export const createFormElement = () => {
@@ -15,7 +15,6 @@ export const createFormElement = () => {
     const addLocationElement = createDOMElement('input', { id: 'location-input' });
     addLocationElement.setAttribute('type', 'text');
     addLocationElement.placeholder = 'Enter Location..';
-    // addLocationElement.addEventListener('keyup', chooseLocation);
 
     const headerLocationPhoto = createDOMElement('div', { id: 'header-location-photo' });
     const addHeaderLocationPhoto = createDOMElement('input', { id: 'add-header-location-photo' });
@@ -143,10 +142,11 @@ export const createFormElement = () => {
     attendedEventCost.setAttribute('min', '0');
     attendedEventCost.placeholder = 'Enter Cost..';
 
-    const saveTripInfo = createDOMElement('input', { id: 'save-trip-info' });
-    saveTripInfo.setAttribute('type', 'submit');
-    saveTripInfo.setAttribute('value', 'Save Trip');
-    // saveTripInfo.addEventListener('click', saveTrip);
+    const saveTripInfo = createDOMElement('button', { id: 'save-trip-info' });
+    saveTripInfo.innerHTML = 'Save Trip';
+    // saveTripInfo.setAttribute('type', 'submit');
+    // saveTripInfo.setAttribute('value', 'Save Trip');
+    saveTripInfo.addEventListener('click', saveTrip);
 
     attendedEventFieldset.appendChild(attendedEventLegend);
     attendedEventFieldset.appendChild(attendedEventName);
@@ -177,9 +177,9 @@ export const createFormElement = () => {
     formContainer.appendChild(travelledWithOthersLabel);
     formContainer.appendChild(visitedAttractionFieldset);
     formContainer.appendChild(attendedEventFieldset);
-    formContainer.appendChild(saveTripInfo);
 
     userInterfaceContent.appendChild(formContainer);
+    userInterfaceContent.appendChild(saveTripInfo);
 
     userInterfaceContainer.appendChild(userInterfaceContent);
 }

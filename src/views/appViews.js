@@ -43,18 +43,12 @@ export const createTabElements = () => {
 
     tripTabContent.appendChild(dashedWindow);
 
-    // const displayLocationResultElement = createDOMElement('textarea', { id: 'location-result' });
-
     // const addBtnElement = document.createElement('button');
     // addBtnElement.innerHTML = 'Submit';
     // addBtnElement.addEventListener('click', submitBtn);
 
-    // const displayIPResultElement = createDOMElement('textarea', { id: 'ip-result' });
-
     userInterfaceContent.appendChild(tripTabContent);
-    // userInterfaceContent.appendChild(displayLocationResultElement);
     // userInterfaceContent.appendChild(addBtnElement);
-    // userInterfaceContent.appendChild(displayIPResultElement);
 
     const figuresTabContent = createDOMElement('div', { id: 'figures-tab-content', className: 'tab-content' });
 

@@ -4,6 +4,9 @@ import { createDOMElement, getDOMElement, clearDOMElement } from './DOMUtils.js'
 import { fetchLocationData, visitedCountry, visitedLocation, visitedLocationCheck, visitedCountryFlag } from './APIs/positionStackAPI.js'
 import { createTabElements } from './views/appViews.js';
 
+// const Compress = require('compress.js');
+// const compress = new Compress();
+
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
 
 export const showTripTab = () => {
@@ -23,19 +26,24 @@ export const showTripTab = () => {
 export const showFiguresTab = () => {
     createTabElements();
     const visitedCountryCounter = getDOMElement('country-counter');
-    visitedCountryCounter.innerHTML = `You have visited 0/193`;
+    const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
+    visitedCountryCounter.innerHTML = `You have visited ${visitedCountries.length}/193`;
     const figureCountryImage = getDOMElement('figure-country-image');
     figureCountryImage.src = 'media/Flags.png';
     const coveredWorldPercentage = getDOMElement('world-percentage');
-    coveredWorldPercentage.innerHTML = `You have covered 0% of the World`;
+    const coveredPercent = (visitedCountries.length * 100) / 193;
+    coveredWorldPercentage.innerHTML = `You have covered ${Math.floor(coveredPercent)}% of the World`;
     const figureWorldImage = getDOMElement('figure-world-image');
     figureWorldImage.src = 'media/World.jpg';
     const visitedLocationCounter = getDOMElement('location-counter');
-    visitedLocationCounter.innerHTML = `You have visited 0 Locations`;
+    const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
+    visitedLocationCounter.innerHTML = `You have visited<br> ${visitedLocations.length} Locations`;
     const figureLocationImage = getDOMElement('figure-location-image');
     figureLocationImage.src = 'media/Locations.jpg';
     const crossedDistanceCounter = getDOMElement('crossed-distance');
-    crossedDistanceCounter.innerHTML = `You have crossed 0 KM`;
+    const visitedLocationObject = JSON.parse(localStorage.getItem('visitedLocations'));
+    console.log(visitedLocationObject);
+    crossedDistanceCounter.innerHTML = `You have crossed ${visitedLocationObject[visitedLocationObject.length - 1].crossedDistance} KM`;
     const figureDistanceImage = getDOMElement('figure-distance-image');
     figureDistanceImage.src = 'media/Kilometers.jpg';
     const tripTab = getDOMElement('trip-tab');
@@ -68,7 +76,18 @@ export function addCoverPhoto() {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         getDOMElement('profile-cover').style.backgroundImage = `url(${reader.result})`;
-        // localStorage.setItem('userCoverPhoto', reader.result);
+        //     compress.compress(reader.result, {
+        //         size: 4,
+        //         quality: 0.75,
+        //         maxWidth: 1920,
+        //         maxHeight: 1920,
+        //         resize: true
+        //     }).then((compressedImg) => {
+        //         localStorage.setItem('userCoverPhoto', compressedImg);
+        //     });
+        // },
+        //     false
+        // );
     });
     reader.readAsDataURL(this.files[0]);
 }
@@ -102,18 +121,6 @@ export function addLocationHeaderPhoto() {
     reader.readAsDataURL(this.files[0]);
 }
 
-let countryFlagName = '';
-export const addCountry = () => {
-    let countryCount = visitedCountry.length;
-    getDOMElement('country-counter').innerHTML = `You have visited ${countryCount}/193`;
-    let percent = (countryCount * 100) / 193;
-    getDOMElement('world-percentage').innerHTML = `You have covered ${percent.toFixed(1)}% of the World`;
-    let locationCount = visitedLocationCheck.length;
-    getDOMElement('location-counter').innerHTML = `You have visited ${locationCount} Locations`;
-
-    getDOMElement('country-flag-container').innerHTML = '';
-}
-
 export const displayFlag = () => {
     visitedCountryFlag.forEach((countryFlag) => {
         const visitedCountryFlagElement = createDOMElement('button');
@@ -130,4 +137,8 @@ export const displayVisitedLocation = (visitedCountryFlagElement, countryFlagNam
             visitedCountryFlagElement.title += `${location.visitedLocation}, `;
         }
     });
+}
+
+export const saveTrip = () => {
+    chooseLocation();
 }
