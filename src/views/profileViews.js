@@ -20,7 +20,7 @@ export const createTheTab = () => {
     addProfileCover.addEventListener('change', addCoverPhoto);
     profileCover.appendChild(addProfileCover);
 
-    const profilePhoto = createDOMElement('div', { id: 'profile-photo' }); //To be changed later
+    const profilePhoto = createDOMElement('div', { id: 'profile-photo' });
     const addProfilePhoto = createDOMElement('input', { id: 'add-profile-photo' });
     addProfilePhoto.setAttribute('type', 'file');
     addProfilePhoto.setAttribute('hidden', 'true');
@@ -32,16 +32,30 @@ export const createTheTab = () => {
     addProfilePhoto.addEventListener('change', addProfilePicture);
     profilePhoto.appendChild(addProfilePhoto);
 
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+
     const profileName = createDOMElement('h1', { id: 'profile-name' });
-    profileName.innerHTML = window.localStorage.getItem('userName');
+    profileName.innerHTML = userInfo.userName;
 
     const visitedCountryFlagContainer = createDOMElement('div', { id: 'country-flag-container', className: 'flag-container' });
-    const originCountryFlag = createDOMElement('div', { id: 'origin-country-flag', className: 'flags-chip' })
+    const originCountryFlag = createDOMElement('div', { id: 'origin-country-flag', className: 'flags-chip' });
     const originCountrySpan = createDOMElement('span', { id: 'origin-country-span' });
-    originCountryFlag.innerHTML = window.localStorage.getItem('userCountry');
-    originCountrySpan.innerHTML = window.localStorage.getItem('userCountryFlag');
+    originCountryFlag.innerHTML = userInfo.userCountry;
+    originCountrySpan.innerHTML = userInfo.userCountryFlag;
     originCountryFlag.appendChild(originCountrySpan);
     visitedCountryFlagContainer.appendChild(originCountryFlag);
+
+    const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
+    if (visitedCountries.length > 0) {
+        visitedCountries.forEach((country) => {
+            const visitedCountryFlag = createDOMElement('div', { id: 'visited-country-flag', className: 'flags-chip' });
+            const visitedCountrySpan = createDOMElement('span', { id: 'visited-country-span' });
+            visitedCountryFlag.innerHTML = country.countryName;
+            visitedCountrySpan.innerHTML = country.countryFlag;
+            visitedCountryFlag.appendChild(visitedCountrySpan);
+            visitedCountryFlagContainer.appendChild(visitedCountryFlag);
+        });
+    }
 
     const navOverlay = createDOMElement('div', { id: 'nav-overlay' });
     const appNav = createDOMElement('div', { id: 'app-nav', className: 'tab' });

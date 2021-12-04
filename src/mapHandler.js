@@ -1,7 +1,7 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from './DOMUtils.js';
-import { fetchLocationData, visitedCountry, visitedLocation, visitedLocationCheck, visitedCountryFlag } from './APIs/positionStackAPI.js'
+import { fetchLocationData } from './APIs/positionStackAPI.js'
 import { createTabElements } from './views/appViews.js';
 
 // const Compress = require('compress.js');

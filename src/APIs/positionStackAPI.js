@@ -1,11 +1,20 @@
 'use strict';
 
 import { distance } from '../calculateDistance.js'
+import { getDOMElement } from '../DOMUtils.js';
 
-export const visitedCountry = [];
-export const visitedLocationCheck = [];
-export const visitedLocation = [];
-export const visitedCountryFlag = [];
+const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
+const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
+
+const visitedCountry = [];
+const visitedLocationCheck = [];
+let visitedLocation = [];
+let visitedCountryFlag = [];
+
+if (visitedCountries.length > 0) {
+    visitedLocation = visitedLocations;
+    visitedCountryFlag = visitedCountries;
+}
 
 let crossedDistance = 0;
 export async function fetchLocationData(url) {
@@ -26,8 +35,10 @@ export async function fetchLocationData(url) {
                 const destinationLat = jsonLocationData.data[0].latitude;
                 const destinationLon = jsonLocationData.data[0].longitude;
 
-                const userLat = parseFloat(window.localStorage.getItem('userLat'));
-                const userLon = parseFloat(window.localStorage.getItem('userLon'));
+                const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+                const userLat = parseFloat(userInfo.userLat);
+                const userLon = parseFloat(userInfo.userLon);
+
                 if (destinationLat !== 0 && destinationLon !== 0) {
                     crossedDistance += distance(userLat, destinationLat, userLon, destinationLon);
                 }

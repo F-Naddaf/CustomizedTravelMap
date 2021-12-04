@@ -1,9 +1,9 @@
 'use strict';
 
 import { createDOMElement, getDOMElement } from '../DOMUtils.js'
-import { logIn } from '../mapListener.js'
+import { signIn, logIn } from '../mapListener.js'
 
-export const createSignInPage = () => {
+export const createSignInPage = (userInfo) => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
 
     const userInterfaceContent = createDOMElement('div', { id: 'user-interface-content' });
@@ -24,7 +24,7 @@ export const createSignInPage = () => {
     userNameInput.setAttribute('type', 'text');
     userNameInput.placeholder = 'Enter Your Name ..';
 
-    const logInButton = createTheLogInButton();
+    const logInButton = createTheLogInButton(userInfo);
 
     const declarationMessage = createDOMElement('h5', { id: 'declaration-message' });
     declarationMessage.innerHTML = `For the purpose of this project,
@@ -33,29 +33,37 @@ export const createSignInPage = () => {
 
     userInterfaceContent.appendChild(titleContainer);
     userInterfaceContent.appendChild(appSlogan);
-    userInterfaceContent.appendChild(userNameInput);
+    if (!userInfo) {
+        userInterfaceContent.appendChild(userNameInput);
+    }
     userInterfaceContent.appendChild(logInButton);
     userInterfaceContent.appendChild(declarationMessage);
 
     userInterfaceContainer.appendChild(userInterfaceContent);
 };
 
-const createTheLogInButton = () => {
+const createTheLogInButton = (userInfo) => {
     const signLogBtn = createDOMElement('button', { id: 'sign-or-log' });
     const buttonIcon = createDOMElement('i', { className: 'fas fa-map-marker-alt' });
     const buttonText = createDOMElement('h2', { id: 'button-text' });
-    buttonText.innerHTML = 'Sign In'
+    if (userInfo) {
+        buttonText.innerHTML = 'Log In';
+    }
+    else {
+        buttonText.innerHTML = 'Sign In';
+    }
+
     signLogBtn.appendChild(buttonIcon);
     signLogBtn.appendChild(buttonText);
 
 
     signLogBtn.addEventListener('click', () => {
-        // if (userIP) {
-
-        // } else {
-
-        // }
-        logIn();
+        if (userInfo) {
+            logIn();
+        }
+        else {
+            signIn();
+        }
     });
     return signLogBtn;
 };

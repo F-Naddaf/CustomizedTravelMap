@@ -155,23 +155,29 @@ input[type='number'] {
     color: #1E282E;
 }
 
+.flag-container {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+    margin: 10% 3%;
+}
 .flags-chip {
     display: inline-block;
-    padding: 0 25px;
+    text-align: center;
+    padding-left: 25px;
     height: 50px;
     font-size: 1.2rem;
     font-weight: bolder;
     line-height: 50px;
     border-radius: 25px;
     background-color: #f1f1f1;
-    margin: 20% 5%;
 }
-#origin-country-span {
+#origin-country-span, #visited-country-span {
     float: left;
     background-color: #1E282E;
     padding: 1.15px 15px;
     border-radius: 50%;
-    margin: 0 10px 0 -25px;
+    margin-left: -25px;
     font-size: 1.2rem;
 }
 
