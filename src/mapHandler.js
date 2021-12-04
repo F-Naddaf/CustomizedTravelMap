@@ -101,14 +101,15 @@ export function addProfilePicture() {
     reader.readAsDataURL(this.files[0]);
 }
 
-let timeout = null;
 export const chooseLocation = () => {
-    clearTimeout(timeout);
-    setTimeout(() => {
-        const region = getDOMElement('location-input').value;
+    const region = getDOMElement('location-input').value;
+    if (region) {
         const url = `${apiForward}&query=${region}&limit=1&country_module=1`;
         fetchLocationData(url);
-    }, 1500);
+    }
+    else {
+        alert('Please enter a location first');
+    }
 }
 
 export function addLocationHeaderPhoto() {
