@@ -1,7 +1,8 @@
 'use strict';
 
-import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { addLocationHeaderPhoto, saveTrip } from '../mapHandler.js';
+import { createDOMElement, getDOMElement } from '../DOMUtils.js';
+import { addLocationHeaderPhoto } from '../mapHandler.js';
+import { saveTrip } from '../mapListener.js';
 
 export const createFormElement = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
@@ -47,11 +48,11 @@ export const createFormElement = () => {
     travelledByCarLabel.setAttribute('for', 'car');
     travelledByCarLabel.innerHTML = 'Car';
 
-    const travelledByShipRadio = createDOMElement('input', { id: 'ship' });
-    travelledByShipRadio.setAttribute('type', 'radio');
-    const travelledByShipLabel = createDOMElement('label', { id: 'ship-label' });
-    travelledByShipLabel.setAttribute('for', 'ship');
-    travelledByShipLabel.innerHTML = 'Ship';
+    const travelledByBoatRadio = createDOMElement('input', { id: 'boat' });
+    travelledByBoatRadio.setAttribute('type', 'radio');
+    const travelledByBoatLabel = createDOMElement('label', { id: 'boat-label' });
+    travelledByBoatLabel.setAttribute('for', 'boat');
+    travelledByBoatLabel.innerHTML = 'Boat';
 
     const stayedInText = createDOMElement('h3', { id: 'stayed-in-text' });
     stayedInText.innerHTML = 'Stayed In: ';
@@ -160,8 +161,8 @@ export const createFormElement = () => {
     formContainer.appendChild(travelledByPlaneLabel);
     formContainer.appendChild(travelledByCarRadio);
     formContainer.appendChild(travelledByCarLabel);
-    formContainer.appendChild(travelledByShipRadio);
-    formContainer.appendChild(travelledByShipLabel);
+    formContainer.appendChild(travelledByBoatRadio);
+    formContainer.appendChild(travelledByBoatLabel);
     formContainer.appendChild(stayedInText);
     formContainer.appendChild(stayedInHotelCheckbox);
     formContainer.appendChild(stayedInHotelLabel);

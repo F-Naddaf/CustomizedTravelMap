@@ -59,7 +59,9 @@ const createTheLogInButton = (userInfo) => {
 
     signLogBtn.addEventListener('click', () => {
         if (userInfo) {
-            logIn();
+            const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
+            const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
+            logIn(visitedLocations, visitedCountries);
         }
         else {
             signIn();

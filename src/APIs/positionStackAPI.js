@@ -1,19 +1,21 @@
 'use strict';
 
 import { distance } from '../calculateDistance.js'
-import { getDOMElement } from '../DOMUtils.js';
 
 const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
 const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
 
-const visitedCountry = [];
+let visitedCountry = [];
 const visitedLocationCheck = [];
 let visitedLocation = [];
 let visitedCountryFlag = [];
 
-if (visitedCountries.length > 0) {
+if (visitedCountries) {
     visitedLocation = visitedLocations;
     visitedCountryFlag = visitedCountries;
+    visitedCountries.forEach(element => {
+        visitedCountry.push(element.countryName);
+    });
 }
 
 let crossedDistance = 0;

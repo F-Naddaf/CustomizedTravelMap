@@ -3,9 +3,6 @@
 import { getDOMElement } from '../DOMUtils.js';
 import { createTheTab } from '../views/profileViews.js'
 
-let userLat = 0;
-let userLon = 0;
-
 const ipInfoUrl = 'https://ipinfo.io/json?token=4d06bc2f56ae24';
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
 

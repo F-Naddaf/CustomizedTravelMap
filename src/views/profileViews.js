@@ -1,12 +1,16 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { showTripTab, showFiguresTab, showMapTab, addCoverPhoto, addProfilePicture } from '../mapHandler.js'
+import { addCoverPhoto, addProfilePicture } from '../mapHandler.js'
+import { createTripTabElements } from './tripTabViews.js'
 
 export const createTheTab = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
     const userInterfaceContent = getDOMElement('user-interface-content');
     clearDOMElement(userInterfaceContent);
+
+    const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
+    const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
 
     const profileCover = createDOMElement('div', { id: 'profile-cover' });
     const addProfileCover = createDOMElement('input', { id: 'add-profile-cover' });
@@ -44,37 +48,70 @@ export const createTheTab = () => {
     originCountrySpan.innerHTML = userInfo.userCountryFlag;
     originCountryFlag.appendChild(originCountrySpan);
     visitedCountryFlagContainer.appendChild(originCountryFlag);
+    if (visitedCountries) {
+        if (visitedCountries.length > 0) {
+            visitedCountries.forEach((country) => {
+                const visitedCountryFlag = createDOMElement('div', { id: 'visited-country-flag', className: 'flags-chip' });
+                const visitedCountrySpan = createDOMElement('span', { id: 'visited-country-span' });
+                visitedCountryFlag.innerHTML = country.countryName;
+                visitedCountrySpan.innerHTML = country.countryFlag;
+                const toolTipSpan = createDOMElement('span', { className: 'tool-tip-text' });
 
-    const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
-    if (visitedCountries.length > 0) {
-        visitedCountries.forEach((country) => {
-            const visitedCountryFlag = createDOMElement('div', { id: 'visited-country-flag', className: 'flags-chip' });
-            const visitedCountrySpan = createDOMElement('span', { id: 'visited-country-span' });
-            visitedCountryFlag.innerHTML = country.countryName;
-            visitedCountrySpan.innerHTML = country.countryFlag;
-            visitedCountryFlag.appendChild(visitedCountrySpan);
-            visitedCountryFlagContainer.appendChild(visitedCountryFlag);
-        });
+                visitedLocations.forEach((location) => {
+                    if (location.visitedLocationCountry === country.countryName) {
+                        toolTipSpan.innerHTML += `${location.visitedLocation}<br>`;
+
+                        visitedCountryFlag.appendChild(toolTipSpan);
+                        visitedCountryFlag.addEventListener('mouseover', () => {
+                            toolTipSpan.style.visibility = 'visible';
+                        });
+                    }
+                });
+                visitedCountryFlag.appendChild(visitedCountrySpan);
+                visitedCountryFlagContainer.appendChild(visitedCountryFlag);
+            });
+        }
     }
 
-    const navOverlay = createDOMElement('div', { id: 'nav-overlay' });
-    const appNav = createDOMElement('div', { id: 'app-nav', className: 'tab' });
-    const tripTab = createDOMElement('button', { id: 'trip-tab', className: 'tab-links' });
-    tripTab.addEventListener('click', showTripTab);
-    const figuresTab = createDOMElement('button', { id: 'figures-tab', className: 'tab-links' });
-    figuresTab.addEventListener('click', showFiguresTab);
-    const mapTab = createDOMElement('button', { id: 'map-tab', className: 'tab-links' });
-    mapTab.addEventListener('click', showMapTab);
+    const appFooter = createDOMElement('div', { className: 'app-footer' });
+    const optionToolStrip = createDOMElement('div', { className: 'option-tool-trip' });
 
-    tripTab.textContent = 'Trip';
-    figuresTab.textContent = 'Figures';
-    mapTab.textContent = 'Map';
+    const toolStripList = createDOMElement('ul');
+    const optionList = ['Profile', 'Home', 'Settings'];
+    for (let i = 0; i < optionList.length; i++) {
+        const toolStripItem = createDOMElement('li', { id: 'tool-strip-item' });
+        const itemAnchor = createDOMElement('a');
+        itemAnchor.href = '#';
+        const anchorIconSpan = createDOMElement('span');
+        const anchorTextSpan = createDOMElement('span', { className: 'anchor-text-span' });
+        if (i === 0) {
+            anchorTextSpan.innerHTML = 'Profile';
+            anchorIconSpan.className = 'anchor-icon-span fas fa-user';
+            toolStripItem.className = 'active';
+            toolStripItem.style.marginLeft = '10%';
+        }
+        if (i === 1) {
+            anchorTextSpan.innerHTML = 'Home';
+            anchorIconSpan.className = 'anchor-icon-span fas fa-house-user';
+            toolStripItem.addEventListener('click', createTripTabElements);
+        }
+        if (i === 2) {
+            anchorTextSpan.innerHTML = 'Settings';
+            anchorIconSpan.className = 'anchor-icon-span fas fa-user-cog';
+            toolStripItem.addEventListener('click', () => {
+                console.log('Create Dark & Light Mode Later');
+            });
+        }
+        itemAnchor.appendChild(anchorIconSpan);
+        itemAnchor.appendChild(anchorTextSpan);
+        toolStripItem.appendChild(itemAnchor);
+        toolStripList.appendChild(toolStripItem);
+    }
 
-    appNav.appendChild(tripTab);
-    appNav.appendChild(figuresTab);
-    appNav.appendChild(mapTab);
-
-    navOverlay.appendChild(appNav);
+    const optionIndicator = createDOMElement('div', { className: 'option-indicator' });
+    toolStripList.appendChild(optionIndicator);
+    optionToolStrip.appendChild(toolStripList);
+    appFooter.appendChild(optionToolStrip);
 
     userInterfaceContent.appendChild(profileCover);
     userInterfaceContent.appendChild(addProfileCoverLabel);
@@ -82,7 +119,7 @@ export const createTheTab = () => {
     userInterfaceContent.appendChild(addProfilePhotoLabel);
     userInterfaceContent.appendChild(profileName);
     userInterfaceContent.appendChild(visitedCountryFlagContainer);
-    userInterfaceContent.appendChild(navOverlay);
+    userInterfaceContent.appendChild(appFooter);
 
     userInterfaceContainer.appendChild(userInterfaceContent);
 }

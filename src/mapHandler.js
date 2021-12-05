@@ -1,8 +1,8 @@
 'use strict';
 
-import { createDOMElement, getDOMElement, clearDOMElement } from './DOMUtils.js';
-import { fetchLocationData } from './APIs/positionStackAPI.js'
-import { createTabElements } from './views/appViews.js';
+import { getDOMElement } from './DOMUtils.js';
+import { fetchLocationData } from './APIs/positionStackAPI.js';
+import { createTripTabElements } from './views/tripTabViews.js';
 
 // const Compress = require('compress.js');
 // const compress = new Compress();
@@ -10,66 +10,61 @@ import { createTabElements } from './views/appViews.js';
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
 
 export const showTripTab = () => {
-    createTabElements();
+    createTripTabElements();
     const tripTab = getDOMElement('trip-tab');
     const figuresTab = getDOMElement('figures-tab');
     const MapTab = getDOMElement('map-tab');
     tripTab.className = 'tab-links active';
     figuresTab.className = 'tab-links';
     MapTab.className = 'tab-links';
-    const tripTabContent = getDOMElement('trip-tab-content');
-    const figuresTabContent = getDOMElement('figures-tab-content');
-    tripTabContent.style.display = 'flex';
-    figuresTabContent.style.display = 'none';
 }
 
 export const showFiguresTab = () => {
-    createTabElements();
-    const visitedCountryCounter = getDOMElement('country-counter');
     const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
-    visitedCountryCounter.innerHTML = `You have visited ${visitedCountries.length}/193`;
-    const figureCountryImage = getDOMElement('figure-country-image');
-    figureCountryImage.src = 'media/Flags.png';
-    const coveredWorldPercentage = getDOMElement('world-percentage');
-    const coveredPercent = (visitedCountries.length * 100) / 193;
-    coveredWorldPercentage.innerHTML = `You have covered ${Math.floor(coveredPercent)}% of the World`;
-    const figureWorldImage = getDOMElement('figure-world-image');
-    figureWorldImage.src = 'media/World.jpg';
-    const visitedLocationCounter = getDOMElement('location-counter');
     const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
-    visitedLocationCounter.innerHTML = `You have visited<br> ${visitedLocations.length} Locations`;
-    const figureLocationImage = getDOMElement('figure-location-image');
-    figureLocationImage.src = 'media/Locations.jpg';
-    const crossedDistanceCounter = getDOMElement('crossed-distance');
     const visitedLocationObject = JSON.parse(localStorage.getItem('visitedLocations'));
-    console.log(visitedLocationObject);
-    crossedDistanceCounter.innerHTML = `You have crossed ${visitedLocationObject[visitedLocationObject.length - 1].crossedDistance} KM`;
-    const figureDistanceImage = getDOMElement('figure-distance-image');
-    figureDistanceImage.src = 'media/Kilometers.jpg';
+
+    const visitedCountryCounter = getDOMElement('country-counter');
+    const coveredWorldPercentage = getDOMElement('world-percentage');
+    const visitedLocationCounter = getDOMElement('location-counter');
+    const crossedDistanceCounter = getDOMElement('crossed-distance');
+
+    if (visitedCountries) {
+        if (visitedCountries.length === 1) {
+            visitedCountryCounter.innerHTML = `You have visited ${visitedCountries.length}/193 Country`;
+        } else {
+            visitedCountryCounter.innerHTML = `You have visited ${visitedCountries.length}/193 Countries`;
+        }
+        const coveredPercent = (visitedCountries.length * 100) / 193;
+        coveredWorldPercentage.innerHTML = `You have covered ${Math.floor(coveredPercent)}% of the World`;
+        if (visitedLocations.length === 1) {
+            visitedLocationCounter.innerHTML = `You have visited<br> ${visitedLocations.length} Location`;
+        } else {
+            visitedLocationCounter.innerHTML = `You have visited<br> ${visitedLocations.length} Locations`;
+        }
+        crossedDistanceCounter.innerHTML = `You have crossed ${visitedLocationObject[visitedLocationObject.length - 1].crossedDistance} KM`;
+    }
+    if (!visitedCountries) {
+        visitedCountryCounter.innerHTML = `You have visited 0/193 Country`;
+        coveredWorldPercentage.innerHTML = `You have covered 0% of the World`;
+        visitedLocationCounter.innerHTML = `You have visited<br> 0 Location`;
+        crossedDistanceCounter.innerHTML = `You have crossed 0 KM`;
+    }
     const tripTab = getDOMElement('trip-tab');
     const figuresTab = getDOMElement('figures-tab');
     const MapTab = getDOMElement('map-tab');
     tripTab.className = 'tab-links';
     figuresTab.className = 'tab-links active';
     MapTab.className = 'tab-links';
-    const tripTabContent = getDOMElement('trip-tab-content');
-    const figuresTabContent = getDOMElement('figures-tab-content');
-    tripTabContent.style.display = 'none';
-    figuresTabContent.style.display = 'flex';
 }
 
 export const showMapTab = () => {
-    createTabElements();
     const tripTab = getDOMElement('trip-tab');
     const figuresTab = getDOMElement('figures-tab');
     const MapTab = getDOMElement('map-tab');
     tripTab.className = 'tab-links';
     figuresTab.className = 'tab-links';
     MapTab.className = 'tab-links active';
-    const tripTabContent = getDOMElement('trip-tab-content');
-    const figuresTabContent = getDOMElement('figures-tab-content');
-    tripTabContent.style.display = 'none';
-    figuresTabContent.style.display = 'none';
 }
 
 export function addCoverPhoto() {
@@ -120,26 +115,4 @@ export function addLocationHeaderPhoto() {
         // localStorage.setItem('userCoverPhoto', reader.result);
     });
     reader.readAsDataURL(this.files[0]);
-}
-
-export const displayFlag = () => {
-    visitedCountryFlag.forEach((countryFlag) => {
-        const visitedCountryFlagElement = createDOMElement('button');
-        visitedCountryFlagElement.innerHTML = countryFlag.countryFlag;
-        countryFlagName = countryFlag.countryName;
-        getDOMElement('country-flag-container').appendChild(visitedCountryFlagElement);
-        visitedCountryFlagElement.addEventListener('mouseover', displayVisitedLocation(visitedCountryFlagElement, countryFlagName));
-    });
-}
-
-export const displayVisitedLocation = (visitedCountryFlagElement, countryFlagName) => {
-    const visitedLocationList = visitedLocation.map((location) => {
-        if (location.visitedLocationCountry === countryFlagName) {
-            visitedCountryFlagElement.title += `${location.visitedLocation}, `;
-        }
-    });
-}
-
-export const saveTrip = () => {
-    chooseLocation();
 }
