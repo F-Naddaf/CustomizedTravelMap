@@ -1,13 +1,16 @@
 'use strict';
 
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
-import { showTripTab } from '../mapHandler.js';
 import { displayForm, createFiguresTab, createMapTab } from '../mapListener.js';
 import { createTheTab } from './profileViews.js';
+import { showTripTab } from '../mapHandler.js';
 
-export const createTripTabElements = () => {
+export const createLocationCard = (tripInfo) => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
     const userInterfaceContent = getDOMElement('user-interface-content');
+    clearDOMElement(userInterfaceContent);
+
+    tripInfo = JSON.parse(localStorage.getItem('tripInfo'));
 
     const navOverlay = createDOMElement('div', { id: 'nav-overlay' });
     const appNav = createDOMElement('div', { id: 'app-nav', className: 'tab' });
@@ -35,16 +38,54 @@ export const createTripTabElements = () => {
     const addTripText = createDOMElement('h2', { id: 'add-trip-txt' });
 
     addTripButton.appendChild(plusIcon);
-    addTripButton.addEventListener('click', displayForm);
+    addTripButton.addEventListener('click', () => {
+        clearDOMElement(locationCardsContainer);
+        displayForm();
+    });
     addTripText.innerHTML = 'Add Trip';
 
     dashedWindow.appendChild(addTripButton);
     dashedWindow.appendChild(addTripText);
 
     tripTabContent.appendChild(dashedWindow);
+    dashedWindow.style.setProperty('top', 'calc(100vh - 87px - 10px - 110px)');
+
+
+    const locationCardsContainer = createDOMElement('div', { id: 'location-card-container' });
+
+    tripInfo.forEach((trip) => {
+        const locationCard = createDOMElement('div', { id: 'location-card' });
+        const locationCardHeaderPhoto = createDOMElement('img', { id: 'location-card-header-photo' });
+        locationCardHeaderPhoto.src = trip.tripHeaderPhoto;
+
+        const duplicateButton = createDOMElement('button', { id: 'duplicate-button' });
+        const duplicateIcon = createDOMElement('i', { className: 'fas fa-copy fa-2x' });
+        duplicateButton.appendChild(duplicateIcon);
+
+        const editButton = createDOMElement('button', { id: 'edit-button' });
+        const editIcon = createDOMElement('i', { className: 'fas fa-edit fa-2x' });
+        editButton.appendChild(editIcon);
+
+        const displayButton = createDOMElement('button', { id: 'display-button' });
+        const displayIcon = createDOMElement('i', { className: 'fas fa-eye fa-2x' });
+        displayButton.appendChild(displayIcon);
+
+        const deleteButton = createDOMElement('button', { id: 'delete-button' });
+        const deleteIcon = createDOMElement('i', { className: 'fas fa-backspace fa-2x' });
+        deleteButton.appendChild(deleteIcon);
+
+        locationCard.appendChild(locationCardHeaderPhoto);
+        locationCard.appendChild(duplicateButton);
+        locationCard.appendChild(editButton);
+        locationCard.appendChild(displayButton);
+        locationCard.appendChild(deleteButton);
+
+        locationCardsContainer.appendChild(locationCard);
+    });
 
     const appFooter = createDOMElement('div', { className: 'app-footer' });
     const optionToolStrip = createDOMElement('div', { className: 'option-tool-trip' });
+
     const toolStripList = createDOMElement('ul');
     const optionList = ['Profile', 'Home', 'Settings'];
     optionList.forEach((item) => {
@@ -62,8 +103,7 @@ export const createTripTabElements = () => {
                     JSON.parse(localStorage.getItem('visitedLocations')),
                     JSON.parse(localStorage.getItem('visitedCountries')),
                     localStorage.getItem('profileCover'),
-                    localStorage.getItem('profilePhoto'),
-                    JSON.parse(localStorage.getItem('tripInfo'))
+                    localStorage.getItem('profilePhoto')
                 );
             });
         }
@@ -76,7 +116,6 @@ export const createTripTabElements = () => {
             anchorTextSpan.innerHTML = 'Settings';
             anchorIconSpan.className = 'anchor-icon-span fas fa-user-cog';
             toolStripItem.addEventListener('click', () => {
-                // optionIndicator.style.transform = "translateX(198px)";
                 console.log('Create Dark & Light Mode');
             });
         }
@@ -85,6 +124,7 @@ export const createTripTabElements = () => {
         toolStripItem.appendChild(itemAnchor);
         toolStripList.appendChild(toolStripItem);
     });
+
     const optionIndicator = createDOMElement('div', { className: 'option-indicator' });
     optionIndicator.style.transform = "translateX(98px)";
     toolStripList.appendChild(optionIndicator);
@@ -92,9 +132,9 @@ export const createTripTabElements = () => {
     appFooter.appendChild(optionToolStrip);
 
     navOverlay.style.top = '0px';
-    clearDOMElement(userInterfaceContent);
     userInterfaceContent.appendChild(navOverlay);
     userInterfaceContent.appendChild(tripTabContent);
+    userInterfaceContent.appendChild(locationCardsContainer);
     userInterfaceContent.appendChild(appFooter);
 
     userInterfaceContainer.appendChild(userInterfaceContent);

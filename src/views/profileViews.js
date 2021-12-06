@@ -3,8 +3,9 @@
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
 import { addCoverPhoto, addProfilePicture } from '../mapHandler.js'
 import { createTripTabElements } from './tripTabViews.js'
+import { createLocationCard } from './locationCardViews.js'
 
-export const createTheTab = (visitedLocations, visitedCountries, compressedProfileCover, compressedProfilePhoto) => {
+export const createTheTab = (visitedLocations, visitedCountries, compressedProfileCover, compressedProfilePhoto, tripInfo) => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
     const userInterfaceContent = getDOMElement('user-interface-content');
     clearDOMElement(userInterfaceContent);
@@ -34,6 +35,12 @@ export const createTheTab = (visitedLocations, visitedCountries, compressedProfi
     addProfilePhotoLabel.appendChild(addProfilePhotoIcon);
     addProfilePhoto.addEventListener('change', addProfilePicture);
     profilePhoto.appendChild(addProfilePhoto);
+
+    if (visitedCountries) {
+        addProfileCoverIcon.style.top = '115px';
+        addProfilePhotoIcon.style.left = '12%';
+        addProfilePhotoIcon.style.marginTop = '8%';
+    }
 
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 
@@ -92,7 +99,14 @@ export const createTheTab = (visitedLocations, visitedCountries, compressedProfi
         if (i === 1) {
             anchorTextSpan.innerHTML = 'Home';
             anchorIconSpan.className = 'anchor-icon-span fas fa-house-user';
-            toolStripItem.addEventListener('click', createTripTabElements);
+            if (!tripInfo || tripInfo === null) {
+                toolStripItem.addEventListener('click', createTripTabElements);
+
+            } else {
+                toolStripItem.addEventListener('click', () => {
+                    createLocationCard(tripInfo);
+                });
+            }
         }
         if (i === 2) {
             anchorTextSpan.innerHTML = 'Settings';

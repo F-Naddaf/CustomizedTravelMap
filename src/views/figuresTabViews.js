@@ -3,6 +3,8 @@
 import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js';
 import { showTripTab } from '../mapHandler.js';
 import { createFiguresTab, createMapTab } from '../mapListener.js';
+import { createTripTabElements } from './tripTabViews.js';
+import { createLocationCard } from './locationCardViews.js';
 
 export const createFiguresTabElements = () => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
@@ -12,6 +14,19 @@ export const createFiguresTabElements = () => {
     const navOverlay = createDOMElement('div', { id: 'nav-overlay' });
     const appNav = createDOMElement('div', { id: 'app-nav', className: 'tab' });
     const tripTab = createDOMElement('button', { id: 'trip-tab', className: 'tab-links active' });
+    const tripInfo = JSON.parse(localStorage.getItem('tripInfo'));
+    if (tripInfo === null) {
+        tripTab.addEventListener('click', () => {
+            showTripTab();
+            createTripTabElements();
+        });
+    } else {
+        tripTab.addEventListener('click', () => {
+            showTripTab();
+            createLocationCard();
+        });
+    }
+
     tripTab.addEventListener('click', showTripTab);
     const figuresTab = createDOMElement('button', { id: 'figures-tab', className: 'tab-links' });
     figuresTab.addEventListener('click', createFiguresTab);

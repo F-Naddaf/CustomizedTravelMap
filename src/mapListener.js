@@ -6,13 +6,14 @@ import { createFormElement } from './views/formViews.js';
 import { createFiguresTabElements } from './views/figuresTabViews.js';
 import { createMapTabElements } from './views/mapTabViews.js';
 import { showFiguresTab, showMapTab, chooseLocation, getFormData } from './mapHandler.js';
+import { createLocationCard } from './views/locationCardViews.js';
 
 export const signIn = () => {
     getIPData();
 }
 
-export const logIn = (visitedLocations, visitedCountries, profileCover, profilePhoto) => {
-    createTheTab(visitedLocations, visitedCountries, profileCover, profilePhoto);
+export const logIn = (visitedLocations, visitedCountries, profileCover, profilePhoto, tripInfo) => {
+    createTheTab(visitedLocations, visitedCountries, profileCover, profilePhoto, tripInfo);
 }
 
 export const displayForm = () => {
@@ -22,6 +23,7 @@ export const displayForm = () => {
 export const saveTrip = () => {
     chooseLocation();
     getFormData();
+    createLocationCard();
 }
 
 export const createFiguresTab = () => {

@@ -2,12 +2,10 @@
 
 import { createDOMElement, getDOMElement } from './DOMUtils.js';
 import { fetchLocationData } from './APIs/positionStackAPI.js';
-import { createTripTabElements } from './views/tripTabViews.js';
 
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
 
 export const showTripTab = () => {
-    createTripTabElements();
     const tripTab = getDOMElement('trip-tab');
     const figuresTab = getDOMElement('figures-tab');
     const MapTab = getDOMElement('map-tab');
@@ -173,7 +171,9 @@ export const enableSaveTripButton = () => {
     }, 1000);
 }
 
+const tripInfo = [];
 export const getFormData = () => {
+
     const tripInfoObject = {
         tripLocation: getDOMElement('location-input').value,
         tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
@@ -190,6 +190,7 @@ export const getFormData = () => {
         eventDate: '',
         eventCost: ''
     };
+
     const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
     if (getTravelledByValue != null) {
         tripInfoObject.travelledBy = getTravelledByValue.value;
@@ -210,5 +211,7 @@ export const getFormData = () => {
     tripInfoObject.eventDate = getDOMElement('attended-event-date').value;
     tripInfoObject.eventCost = getDOMElement('attended-event-cost').value; //return a string representing a number
 
-    localStorage.setItem('tripInfo', JSON.stringify(tripInfoObject));
+    tripInfo.push(tripInfoObject);
+    localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
+
 }
