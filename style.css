@@ -480,8 +480,7 @@ input[type='number'] {
     margin-left: 35%;
     padding: 10px 16px;
     border-radius: 20px;
-    color: #E0E0E0;
-    background-color: #1E282E;
+    color: #1E282E;
 }
 #save-trip-info:hover, #save-trip-info:focus {
     transform: scale(1.2);

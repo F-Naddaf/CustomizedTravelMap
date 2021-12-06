@@ -111,8 +111,19 @@ export function addLocationHeaderPhoto() {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         const locationHeaderPhoto = reader.result;
-        console.log(locationHeaderPhoto);
-        // localStorage.setItem('userCoverPhoto', reader.result);
+        return locationHeaderPhoto;
     });
     reader.readAsDataURL(this.files[0]);
 }
+export const enableSaveTripButton = () => {
+    setTimeout(() => {
+        const tripLocation = getDOMElement('location-input').value;
+        const tripStartDate = getDOMElement('from-date-input').value;
+        const tripEndDate = getDOMElement('to-date-input').value;
+        const saveTripInfo = getDOMElement('save-trip-info');
+        if (tripLocation && tripStartDate && tripEndDate) {
+            saveTripInfo.disabled = false;
+        }
+    }, 1500);
+}
+

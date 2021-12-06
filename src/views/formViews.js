@@ -1,7 +1,7 @@
 'use strict';
 
 import { createDOMElement, getDOMElement } from '../DOMUtils.js';
-import { addLocationHeaderPhoto } from '../mapHandler.js';
+import { addLocationHeaderPhoto, enableSaveTripButton } from '../mapHandler.js';
 import { saveTrip } from '../mapListener.js';
 
 export const createFormElement = () => {
@@ -15,6 +15,7 @@ export const createFormElement = () => {
     const addLocationElement = createDOMElement('input', { id: 'location-input' });
     addLocationElement.setAttribute('type', 'text');
     addLocationElement.placeholder = 'Enter Location..';
+    addLocationElement.addEventListener('keyup', enableSaveTripButton);
 
     const headerLocationPhoto = createDOMElement('div', { id: 'header-location-photo' });
     const addHeaderLocationPhoto = createDOMElement('input', { id: 'add-header-location-photo' });
@@ -33,11 +34,13 @@ export const createFormElement = () => {
     fromDateElement.placeholder = 'Start Date..';
     fromDateElement.setAttribute('onfocus', 'this.type="date"');
     fromDateElement.setAttribute('onblur', 'this.type="text"');
+    fromDateElement.addEventListener('change', enableSaveTripButton);
     const toDateElement = createDOMElement('input', { id: 'to-date-input' });
     toDateElement.setAttribute('type', 'text');
     toDateElement.placeholder = 'End Date..';
     toDateElement.setAttribute('onfocus', 'this.type="date"');
     toDateElement.setAttribute('onblur', 'this.type="text"');
+    toDateElement.addEventListener('change', enableSaveTripButton);
 
     const travelledByText = createDOMElement('h3', { id: 'travelled-by-text' });
     travelledByText.innerHTML = 'Travelled By: ';
@@ -165,6 +168,7 @@ export const createFormElement = () => {
 
     const saveTripInfo = createDOMElement('button', { id: 'save-trip-info' });
     saveTripInfo.innerHTML = 'Save Trip';
+    saveTripInfo.disabled = true;
     saveTripInfo.addEventListener('click', saveTrip);
 
     attendedEventFieldset.appendChild(attendedEventLegend);
