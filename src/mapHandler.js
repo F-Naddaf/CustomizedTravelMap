@@ -106,8 +106,9 @@ export function addProfilePicture() {
             const TABLET_MAX_WIDTH = 375; // change later
             const DESKTOP_MAX_WIDTH = 200;
 
+            const scaleSize = MOBILE_MAX_WIDTH / e.target.width;
             canvas.width = MOBILE_MAX_WIDTH;
-            canvas.height = MOBILE_MAX_WIDTH;
+            canvas.height = e.target.height * scaleSize;
 
             const ctx = canvas.getContext('2d');
             ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
@@ -169,7 +170,7 @@ export const enableSaveTripButton = () => {
         if (tripLocation && tripStartDate && tripEndDate) {
             saveTripInfo.disabled = false;
         }
-    }, 1500);
+    }, 1000);
 }
 
 export const getFormData = () => {
