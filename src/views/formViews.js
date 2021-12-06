@@ -48,6 +48,7 @@ export const createFormElement = () => {
     const travelledByPlaneRadio = createDOMElement('input', { id: 'plane' });
     travelledByPlaneRadio.setAttribute('type', 'radio');
     travelledByPlaneRadio.setAttribute('name', 'TravelledBy');
+    travelledByPlaneRadio.setAttribute('value', 'Plane');
     const travelledByPlaneLabel = createDOMElement('label', { id: 'plane-label' });
     travelledByPlaneLabel.setAttribute('for', 'plane');
     travelledByPlaneLabel.innerHTML = 'Plane';
@@ -55,6 +56,7 @@ export const createFormElement = () => {
     const travelledByCarRadio = createDOMElement('input', { id: 'car' });
     travelledByCarRadio.setAttribute('type', 'radio');
     travelledByCarRadio.setAttribute('name', 'TravelledBy');
+    travelledByCarRadio.setAttribute('value', 'Car');
     const travelledByCarLabel = createDOMElement('label', { id: 'car-label' });
     travelledByCarLabel.setAttribute('for', 'car');
     travelledByCarLabel.innerHTML = 'Car';
@@ -62,6 +64,7 @@ export const createFormElement = () => {
     const travelledByBoatRadio = createDOMElement('input', { id: 'boat' });
     travelledByBoatRadio.setAttribute('type', 'radio');
     travelledByBoatRadio.setAttribute('name', 'TravelledBy');
+    travelledByBoatRadio.setAttribute('value', 'Boat');
     const travelledByBoatLabel = createDOMElement('label', { id: 'boat-label' });
     travelledByBoatLabel.setAttribute('for', 'boat');
     travelledByBoatLabel.innerHTML = 'Boat';
@@ -72,6 +75,7 @@ export const createFormElement = () => {
     const stayedInHotelRadio = createDOMElement('input', { id: 'hotel' });
     stayedInHotelRadio.setAttribute('type', 'radio');
     stayedInHotelRadio.setAttribute('name', 'StayedIn');
+    stayedInHotelRadio.setAttribute('value', 'Hotel');
     const stayedInHotelLabel = createDOMElement('label', { id: 'hotel-label' });
     stayedInHotelLabel.setAttribute('for', 'hotel');
     stayedInHotelLabel.innerHTML = 'Hotel';
@@ -79,6 +83,7 @@ export const createFormElement = () => {
     const stayedInAirbnbRadio = createDOMElement('input', { id: 'airbnb' });
     stayedInAirbnbRadio.setAttribute('type', 'radio');
     stayedInAirbnbRadio.setAttribute('name', 'StayedIn');
+    stayedInAirbnbRadio.setAttribute('value', 'Airbnb');
     const stayedInAirbnbLabel = createDOMElement('label', { id: 'airbnb-label' });
     stayedInAirbnbLabel.setAttribute('for', 'airbnb');
     stayedInAirbnbLabel.innerHTML = 'Airbnb';
@@ -89,6 +94,7 @@ export const createFormElement = () => {
     const travelledWithSoloRadio = createDOMElement('input', { id: 'solo' });
     travelledWithSoloRadio.setAttribute('type', 'radio');
     travelledWithSoloRadio.setAttribute('name', 'TravelledWith');
+    travelledWithSoloRadio.setAttribute('value', 'Solo');
     const travelledWithSoloLabel = createDOMElement('label', { id: 'solo-label' });
     travelledWithSoloLabel.setAttribute('for', 'solo');
     travelledWithSoloLabel.innerHTML = 'Solo';
@@ -96,6 +102,7 @@ export const createFormElement = () => {
     const travelledWithOthersRadio = createDOMElement('input', { id: 'others' });
     travelledWithOthersRadio.setAttribute('type', 'radio');
     travelledWithOthersRadio.setAttribute('name', 'TravelledWith');
+    travelledWithOthersRadio.setAttribute('value', 'Others');
     const travelledWithOthersLabel = createDOMElement('label', { id: 'others-label' });
     travelledWithOthersLabel.setAttribute('for', 'others');
     travelledWithOthersLabel.innerHTML = 'Others';
