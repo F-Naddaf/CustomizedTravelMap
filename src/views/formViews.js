@@ -29,9 +29,15 @@ export const createFormElement = () => {
     headerLocationPhoto.appendChild(addHeaderLocationPhotoLabel);
 
     const fromDateElement = createDOMElement('input', { id: 'from-date-input' });
-    fromDateElement.setAttribute('type', 'date');
+    fromDateElement.setAttribute('type', 'text');
+    fromDateElement.placeholder = 'Start Date..';
+    fromDateElement.setAttribute('onfocus', 'this.type="date"');
+    fromDateElement.setAttribute('onblur', 'this.type="text"');
     const toDateElement = createDOMElement('input', { id: 'to-date-input' });
-    toDateElement.setAttribute('type', 'date');
+    toDateElement.setAttribute('type', 'text');
+    toDateElement.placeholder = 'End Date..';
+    toDateElement.setAttribute('onfocus', 'this.type="date"');
+    toDateElement.setAttribute('onblur', 'this.type="text"');
 
     const travelledByText = createDOMElement('h3', { id: 'travelled-by-text' });
     travelledByText.innerHTML = 'Travelled By: ';
@@ -93,24 +99,27 @@ export const createFormElement = () => {
     const visitedAttractionName = createDOMElement('input', { id: 'visited-attraction-name' });
     visitedAttractionName.setAttribute('type', 'text');
     visitedAttractionName.placeholder = 'Enter Attraction Name..';
+    const attractionCostLabel = createDOMElement('label', { id: 'attraction-cost-label' });
+    attractionCostLabel.setAttribute('for', 'attraction-cost-label');
+    attractionCostLabel.innerHTML = 'Attraction Cost';
     const visitedAttractionCost = createDOMElement('input', { id: 'visited-attraction-cost' });
     visitedAttractionCost.setAttribute('type', 'number');
     visitedAttractionCost.setAttribute('min', '0');
-    visitedAttractionCost.placeholder = 'Enter Cost..';
+    visitedAttractionCost.placeholder = '. . . .';
     const currencySelectElement = createDOMElement('select', { id: 'currency-select' });
-    const euroOption = createDOMElement('option');
+    const euroOption = createDOMElement('option', { className: 'currency-option' });
     euroOption.value = 'EUR';
     euroOption.innerHTML = 'EUR';
-    const poundSterlingOption = createDOMElement('option');
+    const poundSterlingOption = createDOMElement('option', { className: 'currency-option' });
     poundSterlingOption.value = 'GBP';
     poundSterlingOption.innerHTML = 'GBP';
-    const americanDollarOption = createDOMElement('option');
+    const americanDollarOption = createDOMElement('option', { className: 'currency-option' });
     americanDollarOption.value = 'USD';
     americanDollarOption.innerHTML = 'USD';
-    const canadianDollarOption = createDOMElement('option');
+    const canadianDollarOption = createDOMElement('option', { className: 'currency-option' });
     canadianDollarOption.value = 'CAD';
     canadianDollarOption.innerHTML = 'CAD';
-    const australianDollarOption = createDOMElement('option');
+    const australianDollarOption = createDOMElement('option', { className: 'currency-option' });
     australianDollarOption.value = 'AUD';
     australianDollarOption.innerHTML = 'AUD';
 
@@ -122,6 +131,7 @@ export const createFormElement = () => {
 
     visitedAttractionFieldset.appendChild(visitedAttractionLegend);
     visitedAttractionFieldset.appendChild(visitedAttractionName);
+    visitedAttractionFieldset.appendChild(attractionCostLabel);
     visitedAttractionFieldset.appendChild(visitedAttractionCost);
     visitedAttractionFieldset.appendChild(currencySelectElement);
 
@@ -134,13 +144,19 @@ export const createFormElement = () => {
     attendedEventName.placeholder = 'Enter Event Name..';
     const attendedEventLocation = createDOMElement('input', { id: 'attended-event-location' });
     attendedEventLocation.setAttribute('type', 'text');
-    attendedEventLocation.placeholder = 'Enter Event Location..';
+    attendedEventLocation.placeholder = 'Event Location..';
     const attendedEventDate = createDOMElement('input', { id: 'attended-event-date' });
-    attendedEventDate.setAttribute('type', 'date');
+    attendedEventDate.setAttribute('type', 'text');
+    attendedEventDate.placeholder = 'Event Date..';
+    attendedEventDate.setAttribute('onfocus', 'this.type="date"');
+    attendedEventDate.setAttribute('onblur', 'this.type="text"');
+    const eventCostLabel = createDOMElement('label', { id: 'event-cost-label' });
+    eventCostLabel.setAttribute('for', 'event-cost-label');
+    eventCostLabel.innerHTML = 'Event Cost';
     const attendedEventCost = createDOMElement('input', { id: 'attended-event-cost' });
     attendedEventCost.setAttribute('type', 'number');
     attendedEventCost.setAttribute('min', '0');
-    attendedEventCost.placeholder = 'Enter Cost..';
+    attendedEventCost.placeholder = '. . . .';
 
     const saveTripInfo = createDOMElement('button', { id: 'save-trip-info' });
     saveTripInfo.innerHTML = 'Save Trip';
@@ -150,6 +166,7 @@ export const createFormElement = () => {
     attendedEventFieldset.appendChild(attendedEventName);
     attendedEventFieldset.appendChild(attendedEventLocation);
     attendedEventFieldset.appendChild(attendedEventDate);
+    attendedEventFieldset.appendChild(eventCostLabel);
     attendedEventFieldset.appendChild(attendedEventCost);
 
     formContainer.appendChild(addLocationElement);

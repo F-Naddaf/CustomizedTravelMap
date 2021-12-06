@@ -15,7 +15,7 @@ input {
     border-radius: 20px;
     border: 2px solid #2F2F2F;
     color: #744D45;
-    font-weight: bold;
+    font-weight: bolder;
     margin: 5px;
 }
 input[type='text'] {
@@ -23,14 +23,14 @@ input[type='text'] {
     width: 200px;
 }
 input[type='date'] {
-    font-size: 0.7rem;
-    padding: 5px 8px;
-    width: 120px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    width: 112px;
 }
 input[type='number'] {
-    font-size: 0.7rem;
-    width: 65px;
-    padding: 5px 8px;
+    width: 75px;
+    font-size: 0.85rem;
+    background-color: #E0E0E0;
 }
 
 #user-interface-container {
@@ -252,7 +252,8 @@ input[type='number'] {
     transition: 0.5s;
     color: #212529;
 }
-.option-tool-trip ul li.active a .anchor-icon-span {
+.option-tool-trip ul li.active a .anchor-icon-span,
+.option-tool-trip ul li:hover a .anchor-icon-span {
     transform: translateY(-35px);
 }
 .option-tool-trip ul li a .anchor-text-span {
@@ -265,7 +266,8 @@ input[type='number'] {
     transform: translateY(40px);
     color: #744D45;
 }
-.option-tool-trip ul li.active a .anchor-text-span {
+.option-tool-trip ul li.active a .anchor-text-span,
+.option-tool-trip ul li:hover a .anchor-text-span {
     opacity: 1;
     transform: translateY(20px);
 }
@@ -302,9 +304,6 @@ input[type='number'] {
     border-top-left-radius: 18px;
     box-shadow: -1px -11px 0 0 #212529;
 }
-/*.option-tool-trip ul li:nth-child(3).active .option-indicator {
-    transform: translateX(calc(70px * 2));
-} */
 
 #nav-overlay {
     display: block;
@@ -398,21 +397,87 @@ input[type='number'] {
     border-radius: 15px 0 15px 0;
     cursor: pointer;
 }
+#from-date-input {
+    margin-right: 7%;
+}
+#from-date-input[type=text], #to-date-input[type=text] {
+    width: 100px;
+}
 #travelled-by-text, #stayed-in-text,
 #travelled-with-text {
     display: inline-block;
     margin: 5px;
+    color: #1E282E;
+}
+#plane-label, #car-label, #boat-label,
+#hotel-label, #airbnb-label,
+#solo-label, #others-label {
+    color: #1E282E;
+    font-weight: bolder;
+    padding: 2% 1% 0;
+    border-radius: 10px 10px 0 0;
+    background-color: #C3907F;
+}
+#visited-attraction-fieldset {
+    margin-bottom: 5px;
+}
+.legend {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #1E282E;
 }
 #visited-attraction-name {
-    width: 120px;
-    font-size: 0.68rem;
-    padding: 10px 8px;
+    font-size: 0.9rem;
+    background-color: #E0E0E0;
+}
+#attraction-cost-label, #event-cost-label {
+    font-family: sans-serif;
+    font-weight: bolder;
+    color: #1E282E;
+    margin-left: 3%;
+}
+#visited-attraction-cost, #attended-event-cost {
+    border-radius: 20px 0 0 20px;
+    width: 30px;
+    margin-right: 10px;
+}
+#currency-select {
+    padding: 8px;
+    font-weight: bold;
+    color: #1E282E;
+    background-color: #E0E0E0;
+    border: 2px solid #2F2F2F;
+    border-radius: 20px 0 0 20px;
+    cursor: pointer;
+}
+.currency-option {
+    font-weight: bold;
+    color: #1E282E;
+    background-color: #E0E0E0;
+}
+#attended-event-name, #attended-event-location {
+    background-color: #E0E0E0;
+}
+#attended-event-location {
+    width: 100px;
+    font-size: 0.8rem;
+}
+#attended-event-date[type=text] {
+    width: 80px;
+    font-size: 0.8rem;
+}
+#attended-event-date[type=date] {
+    width: 88px;
+}
+#attended-event-cost {
+    border-radius: 0 20px 20px 0;
+    margin-left: 5%;
 }
 #save-trip-info {
     font-size: 1rem;
     font-weight: bold;
-    margin-top: 5%;
-    margin-left: 30%;
+    margin-top: 4%;
+    margin-left: 35%;
     padding: 10px 16px;
     border-radius: 20px;
     color: #E0E0E0;
