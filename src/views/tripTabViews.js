@@ -58,7 +58,12 @@ export const createTripTabElements = () => {
             anchorIconSpan.className = 'anchor-icon-span fas fa-user';
             toolStripItem.style.marginLeft = '10%';
             toolStripItem.addEventListener('click', () => {
-                createTheTab();
+                createTheTab(
+                    JSON.parse(localStorage.getItem('visitedLocations')),
+                    JSON.parse(localStorage.getItem('visitedCountries')),
+                    localStorage.getItem('profileCover'),
+                    localStorage.getItem('profilePhoto')
+                );
             });
         }
         if (item === 'Home') {

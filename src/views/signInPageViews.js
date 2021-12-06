@@ -61,7 +61,17 @@ const createTheLogInButton = (userInfo) => {
         if (userInfo) {
             const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
             const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
-            logIn(visitedLocations, visitedCountries);
+            const profileCover = localStorage.getItem('profileCover');
+            const profilePhoto = localStorage.getItem('profilePhoto');
+            if (profileCover && !profilePhoto) {
+                logIn(visitedLocations, visitedCountries, profileCover);
+            }
+            if (profileCover && profilePhoto) {
+                logIn(visitedLocations, visitedCountries, profileCover, profilePhoto);
+            }
+            if (!profileCover && !profilePhoto) {
+                logIn(visitedLocations, visitedCountries);
+            }
         }
         else {
             signIn();

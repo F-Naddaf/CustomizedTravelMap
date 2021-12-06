@@ -21,7 +21,7 @@ export const createFormElement = () => {
     const addHeaderLocationPhoto = createDOMElement('input', { id: 'add-header-location-photo' });
     addHeaderLocationPhoto.setAttribute('type', 'file');
     addHeaderLocationPhoto.setAttribute('hidden', 'true');
-    addHeaderLocationPhoto.setAttribute('accept', 'image/jpg');
+    addHeaderLocationPhoto.setAttribute('accept', 'image/jpg image/jpeg image/png');
     const addHeaderLocationPhotoLabel = createDOMElement('label', { id: 'header-label' });
     addHeaderLocationPhotoLabel.setAttribute('for', 'add-header-location-photo');
     addHeaderLocationPhotoLabel.innerHTML = 'Choose File';

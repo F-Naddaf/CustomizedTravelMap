@@ -11,8 +11,8 @@ export const signIn = () => {
     getIPData();
 }
 
-export const logIn = (visitedLocations, visitedCountries) => {
-    createTheTab(visitedLocations, visitedCountries);
+export const logIn = (visitedLocations, visitedCountries, profileCover, profilePhoto) => {
+    createTheTab(visitedLocations, visitedCountries, profileCover, profilePhoto);
 }
 
 export const displayForm = () => {

@@ -1,11 +1,8 @@
 'use strict';
 
-import { getDOMElement } from './DOMUtils.js';
+import { createDOMElement, getDOMElement } from './DOMUtils.js';
 import { fetchLocationData } from './APIs/positionStackAPI.js';
 import { createTripTabElements } from './views/tripTabViews.js';
-
-// const Compress = require('compress.js');
-// const compress = new Compress();
 
 const apiForward = 'http://api.positionstack.com/v1/forward?access_key=fa2c3cb76f128bf3971efaa75baf033b';
 
@@ -69,29 +66,55 @@ export const showMapTab = () => {
 
 export function addCoverPhoto() {
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
+
+    reader.addEventListener('load', (uploadEvent) => {
+        const imgElement = createDOMElement('img');
+        imgElement.src = uploadEvent.target.result;
         getDOMElement('profile-cover').style.backgroundImage = `url(${reader.result})`;
-        //     compress.compress(reader.result, {
-        //         size: 4,
-        //         quality: 0.75,
-        //         maxWidth: 1920,
-        //         maxHeight: 1920,
-        //         resize: true
-        //     }).then((compressedImg) => {
-        //         localStorage.setItem('userCoverPhoto', compressedImg);
-        //     });
-        // },
-        //     false
-        // );
+
+        imgElement.addEventListener('load', (e) => {
+            const canvas = createDOMElement('canvas');
+            const MOBILE_MAX_WIDTH = 375;
+            const TABLET_MAX_WIDTH = 375; // change later
+            const DESKTOP_MAX_WIDTH = 940;
+
+            const scaleSize = MOBILE_MAX_WIDTH / e.target.width;
+            canvas.width = MOBILE_MAX_WIDTH;
+            canvas.height = e.target.height * scaleSize;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+
+            const compressedProfileCover = ctx.canvas.toDataURL(e.target, 'image/jpeg');
+            localStorage.setItem('profileCover', compressedProfileCover);
+        });
     });
     reader.readAsDataURL(this.files[0]);
 }
 
 export function addProfilePicture() {
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
+
+    reader.addEventListener('load', (uploadEvent) => {
+        const imgElement = createDOMElement('img');
+        imgElement.src = uploadEvent.target.result;
         getDOMElement('profile-photo').style.backgroundImage = `url(${reader.result})`;
-        // localStorage.setItem('userCoverPhoto', reader.result);
+
+        imgElement.addEventListener('load', (e) => {
+            const canvas = createDOMElement('canvas');
+            const MOBILE_MAX_WIDTH = 140;
+            const TABLET_MAX_WIDTH = 375; // change later
+            const DESKTOP_MAX_WIDTH = 200;
+
+            canvas.width = MOBILE_MAX_WIDTH;
+            canvas.height = MOBILE_MAX_WIDTH;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+
+            const compressedProfilePhoto = ctx.canvas.toDataURL(e.target, 'image/jpeg');
+            localStorage.setItem('profilePhoto', compressedProfilePhoto);
+        });
     });
     reader.readAsDataURL(this.files[0]);
 }
@@ -108,13 +131,35 @@ export const chooseLocation = () => {
 }
 
 export function addLocationHeaderPhoto() {
+    const file = getDOMElement('add-header-location-photo').files[0];
+
     const reader = new FileReader();
-    reader.addEventListener('load', () => {
-        const locationHeaderPhoto = reader.result;
-        return locationHeaderPhoto;
+
+    reader.readAsDataURL(file);
+
+    reader.addEventListener('load', (uploadEvent) => {
+        const imgElement = createDOMElement('img');
+        imgElement.src = uploadEvent.target.result;
+
+        imgElement.addEventListener('load', (e) => {
+            const canvas = createDOMElement('canvas');
+            const MOBILE_MAX_WIDTH = 150;
+            const TABLET_MAX_WIDTH = 300;
+            const DESKTOP_MAX_WIDTH = 450;
+
+            const scaleSize = MOBILE_MAX_WIDTH / e.target.width;
+            canvas.width = MOBILE_MAX_WIDTH;
+            canvas.height = e.target.height * scaleSize;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(e.target, 0, 0, canvas.width, canvas.height);
+
+            const compressedLocationHeaderPhoto = ctx.canvas.toDataURL(e.target, 'image/jpeg');
+            localStorage.setItem('tripHeaderPhoto', compressedLocationHeaderPhoto);
+        });
     });
-    reader.readAsDataURL(this.files[0]);
 }
+
 export const enableSaveTripButton = () => {
     setTimeout(() => {
         const tripLocation = getDOMElement('location-input').value;
@@ -130,6 +175,7 @@ export const enableSaveTripButton = () => {
 export const getFormData = () => {
     const tripInfoObject = {
         tripLocation: getDOMElement('location-input').value,
+        tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
         tripStartDate: getDOMElement('from-date-input').value,
         tripEndDate: getDOMElement('to-date-input').value,
         travelledBy: '',
@@ -143,7 +189,6 @@ export const getFormData = () => {
         eventDate: '',
         eventCost: ''
     };
-    // const tripHeaderPhoto = addLocationHeaderPhoto();
     const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
     if (getTravelledByValue != null) {
         tripInfoObject.travelledBy = getTravelledByValue.value;

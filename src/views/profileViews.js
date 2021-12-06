@@ -4,19 +4,17 @@ import { createDOMElement, getDOMElement, clearDOMElement } from '../DOMUtils.js
 import { addCoverPhoto, addProfilePicture } from '../mapHandler.js'
 import { createTripTabElements } from './tripTabViews.js'
 
-export const createTheTab = () => {
+export const createTheTab = (visitedLocations, visitedCountries, compressedProfileCover, compressedProfilePhoto) => {
     const userInterfaceContainer = getDOMElement('user-interface-container');
     const userInterfaceContent = getDOMElement('user-interface-content');
     clearDOMElement(userInterfaceContent);
 
-    const visitedLocations = JSON.parse(localStorage.getItem('visitedLocations'));
-    const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
-
     const profileCover = createDOMElement('div', { id: 'profile-cover' });
+    profileCover.style.backgroundImage = `url(${compressedProfileCover})`;
     const addProfileCover = createDOMElement('input', { id: 'add-profile-cover' });
     addProfileCover.setAttribute('type', 'file');
     addProfileCover.setAttribute('hidden', 'true');
-    addProfileCover.setAttribute('accept', 'image/jpg');
+    addProfileCover.setAttribute('accept', 'image/jpg image/jpeg image/png');
     const addProfileCoverLabel = createDOMElement('label');
     addProfileCoverLabel.setAttribute('for', 'add-profile-cover');
     const addProfileCoverIcon = createDOMElement('i', { id: 'cover-icon', className: 'fas fa-camera' });
@@ -25,10 +23,11 @@ export const createTheTab = () => {
     profileCover.appendChild(addProfileCover);
 
     const profilePhoto = createDOMElement('div', { id: 'profile-photo' });
+    profilePhoto.style.backgroundImage = `url(${compressedProfilePhoto})`;
     const addProfilePhoto = createDOMElement('input', { id: 'add-profile-photo' });
     addProfilePhoto.setAttribute('type', 'file');
     addProfilePhoto.setAttribute('hidden', 'true');
-    addProfilePhoto.setAttribute('accept', 'image/jpg');
+    addProfilePhoto.setAttribute('accept', 'image/jpg image/jpeg image/png');
     const addProfilePhotoLabel = createDOMElement('label');
     addProfilePhotoLabel.setAttribute('for', 'add-profile-photo');
     const addProfilePhotoIcon = createDOMElement('i', { id: 'profile-icon', className: 'fas fa-camera' });
