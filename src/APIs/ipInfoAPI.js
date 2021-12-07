@@ -30,7 +30,7 @@ export async function getIPData() {
                 userInfoObject.userLat = userLocation[0];
                 userInfoObject.userLon = userLocation[1];
             }
-            const url = `${apiForward}&query=${window.localStorage.getItem('userCountry')}&limit=1&country_module=1`;
+            const url = `${apiForward}&query=${userInfoObject.userCountry}&limit=1&country_module=1`;
             const flagData = await fetch(url);
             if (flagData.ok) {
                 const jsonFlagData = await flagData.json();
