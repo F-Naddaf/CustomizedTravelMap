@@ -151,6 +151,6 @@ export async function fetchLocationData(url) {
         }
     }
     catch (error) {
-        console.log(error.stack);
+        console.log(error.message);
     }
 }

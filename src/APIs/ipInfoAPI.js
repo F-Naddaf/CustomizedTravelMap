@@ -41,6 +41,6 @@ export async function getIPData() {
         createTheTab();
     }
     catch (error) {
-        console.log(error.stack);
+        console.log(error.message);
     }
 }

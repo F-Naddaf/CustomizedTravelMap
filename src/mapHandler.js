@@ -73,7 +73,7 @@ export function addCoverPhoto() {
         imgElement.addEventListener('load', (e) => {
             const canvas = createDOMElement('canvas');
             const MOBILE_MAX_WIDTH = 375;
-            const TABLET_MAX_WIDTH = 375; // change later
+            const TABLET_MAX_WIDTH = 640;
             const DESKTOP_MAX_WIDTH = 940;
 
             const scaleSize = MOBILE_MAX_WIDTH / e.target.width;
@@ -101,7 +101,7 @@ export function addProfilePicture() {
         imgElement.addEventListener('load', (e) => {
             const canvas = createDOMElement('canvas');
             const MOBILE_MAX_WIDTH = 140;
-            const TABLET_MAX_WIDTH = 375; // change later
+            const TABLET_MAX_WIDTH = 170;
             const DESKTOP_MAX_WIDTH = 200;
 
             const scaleSize = MOBILE_MAX_WIDTH / e.target.width;
@@ -171,87 +171,4 @@ export const enableSaveTripButton = () => {
 
 export const getFormData = (tripInfo) => {
     chooseLocation();
-    // if (!tripInfo) {
-    //     const tripInfo = [];
-    //     const tripInfoObject = {
-    //         tripLocation: getDOMElement('location-input').value,
-    //         tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
-    //         tripStartDate: getDOMElement('from-date-input').value,
-    //         tripEndDate: getDOMElement('to-date-input').value,
-    //         travelledBy: '',
-    //         stayedIn: '',
-    //         travelledWith: '',
-    //         attractionName: '',
-    //         attractionCost: '',
-    //         attractionCostCurrency: '',
-    //         eventName: '',
-    //         eventLocation: '',
-    //         eventDate: '',
-    //         eventCost: ''
-    //     };
-
-    //     const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
-    //     if (getTravelledByValue != null) {
-    //         tripInfoObject.travelledBy = getTravelledByValue.value;
-    //     }
-    //     const getStayedInValue = document.querySelector('input[name="StayedIn"]:checked');
-    //     if (getStayedInValue != null) {
-    //         tripInfoObject.stayedIn = getStayedInValue.value;
-    //     }
-    //     const getTravelledWithValue = document.querySelector('input[name="TravelledWith"]:checked');
-    //     if (getTravelledWithValue != null) {
-    //         tripInfoObject.travelledWith = getTravelledWithValue.value;
-    //     }
-    //     tripInfoObject.attractionName = getDOMElement('visited-attraction-name').value;
-    //     tripInfoObject.attractionCost = getDOMElement('visited-attraction-cost').value; //return a string representing a number
-    //     tripInfoObject.attractionCostCurrency = getDOMElement('currency-select').value;
-    //     tripInfoObject.eventName = getDOMElement('attended-event-name').value;
-    //     tripInfoObject.eventLocation = getDOMElement('attended-event-location').value;
-    //     tripInfoObject.eventDate = getDOMElement('attended-event-date').value;
-    //     tripInfoObject.eventCost = getDOMElement('attended-event-cost').value; //return a string representing a number
-
-    //     tripInfo.push(tripInfoObject);
-    //     localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
-    // }
-    // if (tripInfo) {
-    //     const tripInfoObject = {
-    //         tripLocation: getDOMElement('location-input').value,
-    //         tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
-    //         tripStartDate: getDOMElement('from-date-input').value,
-    //         tripEndDate: getDOMElement('to-date-input').value,
-    //         travelledBy: '',
-    //         stayedIn: '',
-    //         travelledWith: '',
-    //         attractionName: '',
-    //         attractionCost: '',
-    //         attractionCostCurrency: '',
-    //         eventName: '',
-    //         eventLocation: '',
-    //         eventDate: '',
-    //         eventCost: ''
-    //     };
-
-    //     const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
-    //     if (getTravelledByValue != null) {
-    //         tripInfoObject.travelledBy = getTravelledByValue.value;
-    //     }
-    //     const getStayedInValue = document.querySelector('input[name="StayedIn"]:checked');
-    //     if (getStayedInValue != null) {
-    //         tripInfoObject.stayedIn = getStayedInValue.value;
-    //     }
-    //     const getTravelledWithValue = document.querySelector('input[name="TravelledWith"]:checked');
-    //     if (getTravelledWithValue != null) {
-    //         tripInfoObject.travelledWith = getTravelledWithValue.value;
-    //     }
-    //     tripInfoObject.attractionName = getDOMElement('visited-attraction-name').value;
-    //     tripInfoObject.attractionCost = getDOMElement('visited-attraction-cost').value; //return a string representing a number
-    //     tripInfoObject.attractionCostCurrency = getDOMElement('currency-select').value;
-    //     tripInfoObject.eventName = getDOMElement('attended-event-name').value;
-    //     tripInfoObject.eventLocation = getDOMElement('attended-event-location').value;
-    //     tripInfoObject.eventDate = getDOMElement('attended-event-date').value;
-    //     tripInfoObject.eventCost = getDOMElement('attended-event-cost').value; //return a string representing a number
-
-    //     tripInfo.push(tripInfoObject);
-    //     localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
-    // }
 }

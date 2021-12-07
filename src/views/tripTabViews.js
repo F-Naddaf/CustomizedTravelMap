@@ -76,7 +76,6 @@ export const createTripTabElements = () => {
             anchorTextSpan.innerHTML = 'Settings';
             anchorIconSpan.className = 'anchor-icon-span fas fa-user-cog';
             toolStripItem.addEventListener('click', () => {
-                // optionIndicator.style.transform = "translateX(198px)";
                 console.log('Create Dark & Light Mode');
             });
         }
