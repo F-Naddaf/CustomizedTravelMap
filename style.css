@@ -488,13 +488,16 @@ input[type='number'] {
 
 #location-card-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content:space-evenly;
     align-items: center;
+    overflow-x: auto;
 }
 #location-card {
     border: 2px solid #1E282E;
     border-radius: 15px 15px 0 0;
     display: grid;
+    margin-bottom: 30px;
 }
 #location-card-header-photo {
     border-radius: 13px 13px 0 0;

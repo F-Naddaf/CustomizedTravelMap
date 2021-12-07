@@ -20,9 +20,9 @@ export const displayForm = () => {
     createFormElement();
 }
 
-export const saveTrip = () => {
+export const saveTrip = (tripInfo) => {
     chooseLocation();
-    getFormData();
+    getFormData(tripInfo);
     createLocationCard();
 }
 

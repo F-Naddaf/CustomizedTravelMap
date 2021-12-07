@@ -63,6 +63,7 @@ const createTheLogInButton = (userInfo) => {
             const visitedCountries = JSON.parse(localStorage.getItem('visitedCountries'));
             const profileCover = localStorage.getItem('profileCover');
             const profilePhoto = localStorage.getItem('profilePhoto');
+            const tripInfo = JSON.parse(localStorage.getItem('tripInfo'));
             if (profileCover && !profilePhoto) {
                 logIn(visitedLocations, visitedCountries, profileCover);
             }
@@ -71,6 +72,9 @@ const createTheLogInButton = (userInfo) => {
             }
             if (!profileCover && !profilePhoto) {
                 logIn(visitedLocations, visitedCountries);
+            }
+            if (profileCover && profilePhoto && tripInfo) {
+                logIn(visitedLocations, visitedCountries, profileCover, profilePhoto, tripInfo);
             }
         }
         else {

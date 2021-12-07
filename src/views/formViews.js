@@ -176,13 +176,13 @@ export const createFormElement = () => {
     const saveTripInfo = createDOMElement('button', { id: 'save-trip-info' });
     saveTripInfo.innerHTML = 'Save Trip';
     saveTripInfo.disabled = true;
-    // const tripInfo = JSON.parse(localStorage.getItem('tripInfo'));
+    const tripInfo = JSON.parse(localStorage.getItem('tripInfo'));
     saveTripInfo.addEventListener('click', () => {
-        // if (tripInfo) {
-        //     saveTrip(tripInfo);
-        // } else {
-        saveTrip();
-        // }
+        if (tripInfo) {
+            saveTrip(tripInfo);
+        } else {
+            saveTrip();
+        }
     });
 
     attendedEventFieldset.appendChild(attendedEventLegend);
