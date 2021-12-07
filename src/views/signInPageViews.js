@@ -11,7 +11,7 @@ export const createSignInPage = (userInfo) => {
     const titleContainer = createDOMElement('div', { id: 'title-container' });
     const appLogo = createDOMElement('img', { id: 'app-logo' });
     const appName = createDOMElement('h2', { id: 'app-name' });
-    appLogo.src = '../media/app_logo.png';
+    appLogo.src = '../media/app_logo.jpg';
     appLogo.alt = 'app Logo';
     appName.innerHTML = 'Customized Travel Map';
     titleContainer.appendChild(appLogo);
