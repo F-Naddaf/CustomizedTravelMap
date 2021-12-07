@@ -21,7 +21,6 @@ export const displayForm = () => {
 }
 
 export const saveTrip = (tripInfo) => {
-    chooseLocation();
     getFormData(tripInfo);
     createLocationCard();
 }
