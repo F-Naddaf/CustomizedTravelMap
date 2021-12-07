@@ -11,7 +11,9 @@ export const createTheTab = (visitedLocations, visitedCountries, compressedProfi
     clearDOMElement(userInterfaceContent);
 
     const profileCover = createDOMElement('div', { id: 'profile-cover' });
-    profileCover.style.backgroundImage = `url(${compressedProfileCover})`;
+    if (compressedProfileCover) {
+        profileCover.style.backgroundImage = `url(${compressedProfileCover})`;
+    }
     const addProfileCover = createDOMElement('input', { id: 'add-profile-cover' });
     addProfileCover.setAttribute('type', 'file');
     addProfileCover.setAttribute('hidden', 'true');
@@ -24,7 +26,9 @@ export const createTheTab = (visitedLocations, visitedCountries, compressedProfi
     profileCover.appendChild(addProfileCover);
 
     const profilePhoto = createDOMElement('div', { id: 'profile-photo' });
-    profilePhoto.style.backgroundImage = `url(${compressedProfilePhoto})`;
+    if (compressedProfilePhoto) {
+        profilePhoto.style.backgroundImage = `url(${compressedProfilePhoto})`;
+    }
     const addProfilePhoto = createDOMElement('input', { id: 'add-profile-photo' });
     addProfilePhoto.setAttribute('type', 'file');
     addProfilePhoto.setAttribute('hidden', 'true');
