@@ -174,7 +174,7 @@ export const getFormData = (tripInfo) => {
         const trip = [];
         const tripInfoObject = {
             tripLocation: getDOMElement('location-input').value,
-            tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
+            tripHeaderPhoto: getDOMElement('location-input').value,
             tripStartDate: getDOMElement('from-date-input').value,
             tripEndDate: getDOMElement('to-date-input').value,
             travelledBy: '',
@@ -188,7 +188,10 @@ export const getFormData = (tripInfo) => {
             eventDate: '',
             eventCost: ''
         };
-
+        const tripHeaderPhoto = localStorage.getItem('tripHeaderPhoto');
+        if (tripHeaderPhoto !== null) {
+            tripInfoObject.tripHeaderPhoto = tripHeaderPhoto;
+        }
         const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
         if (getTravelledByValue != null) {
             tripInfoObject.travelledBy = getTravelledByValue.value;
@@ -254,5 +257,4 @@ export const getFormData = (tripInfo) => {
         tripInfo.push(tripInfoObject);
         localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
     }
-    localStorage.removeItem('tripHeaderPhoto');
 }

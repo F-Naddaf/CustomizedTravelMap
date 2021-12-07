@@ -55,8 +55,25 @@ export const createLocationCard = (tripInfo) => {
 
     tripInfo.forEach((trip) => {
         const locationCard = createDOMElement('div', { id: 'location-card' });
-        const locationCardHeaderPhoto = createDOMElement('img', { id: 'location-card-header-photo' });
-        locationCardHeaderPhoto.src = trip.tripHeaderPhoto;
+        const locationCardHeaderPhoto = createDOMElement('div', { id: 'location-card-header-photo' });
+
+        const tripHeaderPhoto = localStorage.getItem('tripHeaderPhoto');
+
+        if (tripHeaderPhoto === null) {
+            locationCardHeaderPhoto.innerHTML = trip.tripHeaderPhoto;
+            locationCardHeaderPhoto.style.cssText = `
+                background-color: #E0E0E0;
+                width: 150px;
+                height: 50px;
+                text-align: center;
+                font-size: 1.5rem;
+                font-weight: bold;
+                line-height: 50px;
+            `;
+        }
+        if (tripHeaderPhoto) {
+            locationCardHeaderPhoto.style.backgroundImage = `url(${trip.tripHeaderPhoto})`;
+        }
 
         const duplicateButton = createDOMElement('button', { id: 'duplicate-button' });
         const duplicateIcon = createDOMElement('i', { className: 'fas fa-copy fa-2x' });
@@ -136,6 +153,8 @@ export const createLocationCard = (tripInfo) => {
     userInterfaceContent.appendChild(tripTabContent);
     userInterfaceContent.appendChild(locationCardsContainer);
     userInterfaceContent.appendChild(appFooter);
+
+    localStorage.setItem('tripHeaderPhoto', null);
 
     userInterfaceContainer.appendChild(userInterfaceContent);
 }
