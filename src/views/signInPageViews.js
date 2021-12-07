@@ -48,6 +48,10 @@ const createTheLogInButton = (userInfo) => {
     const buttonText = createDOMElement('h2', { id: 'button-text' });
     if (userInfo) {
         buttonText.innerHTML = 'Log In';
+        if (window.matchMedia('(min-width: 920px)')) {
+            signLogBtn.style.marginTop = '20%';
+            signLogBtn.style.marginBottom = '28%';
+        }
     }
     else {
         buttonText.innerHTML = 'Sign In';

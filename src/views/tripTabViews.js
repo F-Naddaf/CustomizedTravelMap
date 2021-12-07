@@ -86,6 +86,9 @@ export const createTripTabElements = () => {
     });
     const optionIndicator = createDOMElement('div', { className: 'option-indicator' });
     optionIndicator.style.transform = "translateX(98px)";
+    if (window.matchMedia('(min-width: 920px)')) {
+        optionIndicator.style.transform = "translateX(160px)";
+    }
     toolStripList.appendChild(optionIndicator);
     optionToolStrip.appendChild(toolStripList);
     appFooter.appendChild(optionToolStrip);

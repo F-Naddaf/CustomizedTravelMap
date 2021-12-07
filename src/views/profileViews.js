@@ -41,6 +41,11 @@ export const createTheTab = (visitedLocations, visitedCountries, compressedProfi
         addProfilePhotoIcon.style.left = '12%';
         addProfilePhotoIcon.style.marginTop = '8%';
     }
+    if (window.matchMedia('(min-width: 920px)')) {
+        addProfileCoverIcon.style.top = '140px';
+        addProfilePhotoIcon.style.left = '12%';
+        addProfilePhotoIcon.style.marginTop = '3%';
+    }
 
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
 

@@ -553,3 +553,145 @@ input[type='number'] {
 #location-counter, #crossed-distance {
     text-align: center;
 }
+
+@media screen and (min-width: 920px) {
+    html, body {
+        width: 80%;
+        margin: 0 auto;
+        background-color: #E0E0E0;
+        box-sizing: border-box;
+    }
+    /* Landing Page */
+    #app-slogan {
+        margin: 30% auto 10%;
+    }
+    #user-name-input {
+        margin:  10% 30%;
+    }
+    #declaration-message {
+        margin: 10% auto;
+    }
+
+    /*Profile Page */
+    #profile-cover {
+        height: 180px;
+    }
+    #profile-photo {
+        width: 170px;
+        height: 170px;
+    }
+    #profile-icon {
+        left: 12%;
+        margin-top: 3%;
+    }
+    #profile-name {
+        left: 250px;
+    }
+    .app-footer {
+        width: 64%;
+    }
+    .option-tool-trip {
+        width: 64%;
+    }
+    .option-tool-trip ul {
+        display: flex;
+        width: calc(100% - 50px);
+    }
+    .option-tool-trip ul li {
+        margin-right: 20%;
+    }
+    .option-indicator {
+        left: 85px;
+    }
+    /*Trip Tab */
+    #nav-overlay {
+        width:64%;
+        left: 18%;
+        height: 65px;
+    }
+    .tab {
+        overflow: hidden;
+        padding: 0 5%;
+        margin-bottom: 10%;
+    }
+    .tab button {
+        margin: 0 8%;
+    }
+    
+    #dashed-window {
+        top:90px;
+        width: 60%;
+    }
+    /*Form Page*/
+    #form-container {
+        margin: 0 10%;
+        padding: 3% 5%;
+    }
+    #location-input {
+        width: 180px;
+        margin-bottom: 5%;
+    }
+    #header-location-photo {
+        margin-left: 15%;
+    }
+    #from-date-input {
+        margin-right: 8%;
+        margin-bottom: 5%;
+    }
+    #from-date-input[type=text], #to-date-input[type=text] {
+        width: 140px;
+    }
+    #travelled-by-text, #stayed-in-text,
+    #travelled-with-text {
+        margin-right: 5%;
+        margin-bottom: 5%;
+    }
+    #visited-attraction-fieldset {
+        margin-bottom: 5%;
+    }
+    #visited-attraction-name {
+        font-size: 0.9rem;
+        background-color: #E0E0E0;
+        display: block;
+    }
+    #attraction-cost-label, #event-cost-label {
+        margin-left: 3%;
+    }
+    #visited-attraction-cost, #attended-event-cost {
+        margin-right: 5%;
+    }
+    #attended-event-name, #attended-event-location {
+        background-color: #E0E0E0;
+        display: block;
+    }
+    #attended-event-location {
+        width: 200px;
+        font-size: 1rem;
+        display: block;
+    }
+    #attended-event-date[type=text] {
+        width: 100px;
+        font-size: 0.9rem;
+    }
+    #attended-event-date[type=date] {
+        width: 130px;
+    }
+    #save-trip-info {
+        font-size: 1.2rem;
+        margin-left: 37%;
+    }
+    /* Location Card Page */
+
+    /* Figure Tab */
+    #figures-tab-content {
+        flex-basis: 70%;
+    }
+    #figure-country-card, #figure-world-card {
+        margin-top: 35%;
+        flex-basis: 35%;
+    }
+    #figure-location-card, #figure-distance-card {
+        margin-top: 25%;
+        flex-basis: 35%;
+    }
+}
