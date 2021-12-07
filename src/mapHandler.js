@@ -118,11 +118,11 @@ export function addProfilePicture() {
     reader.readAsDataURL(this.files[0]);
 }
 
-export const chooseLocation = () => {
+export const chooseLocation = (tripInfo) => {
     const region = getDOMElement('location-input').value;
     if (region) {
         const url = `${apiForward}&query=${region}&limit=1&country_module=1`;
-        fetchLocationData(url);
+        fetchLocationData(url, tripInfo);
     }
 }
 
@@ -170,5 +170,89 @@ export const enableSaveTripButton = () => {
 
 
 export const getFormData = (tripInfo) => {
-    chooseLocation();
+    if (!tripInfo) {
+        const trip = [];
+        const tripInfoObject = {
+            tripLocation: getDOMElement('location-input').value,
+            tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
+            tripStartDate: getDOMElement('from-date-input').value,
+            tripEndDate: getDOMElement('to-date-input').value,
+            travelledBy: '',
+            stayedIn: '',
+            travelledWith: '',
+            attractionName: '',
+            attractionCost: '',
+            attractionCostCurrency: '',
+            eventName: '',
+            eventLocation: '',
+            eventDate: '',
+            eventCost: ''
+        };
+
+        const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
+        if (getTravelledByValue != null) {
+            tripInfoObject.travelledBy = getTravelledByValue.value;
+        }
+        const getStayedInValue = document.querySelector('input[name="StayedIn"]:checked');
+        if (getStayedInValue != null) {
+            tripInfoObject.stayedIn = getStayedInValue.value;
+        }
+        const getTravelledWithValue = document.querySelector('input[name="TravelledWith"]:checked');
+        if (getTravelledWithValue != null) {
+            tripInfoObject.travelledWith = getTravelledWithValue.value;
+        }
+        tripInfoObject.attractionName = getDOMElement('visited-attraction-name').value;
+        tripInfoObject.attractionCost = getDOMElement('visited-attraction-cost').value; //return a string representing a number
+        tripInfoObject.attractionCostCurrency = getDOMElement('currency-select').value;
+        tripInfoObject.eventName = getDOMElement('attended-event-name').value;
+        tripInfoObject.eventLocation = getDOMElement('attended-event-location').value;
+        tripInfoObject.eventDate = getDOMElement('attended-event-date').value;
+        tripInfoObject.eventCost = getDOMElement('attended-event-cost').value; //return a string representing a number
+
+        trip.push(tripInfoObject);
+        localStorage.setItem('tripInfo', JSON.stringify(trip));
+    }
+
+    if (tripInfo) {
+        const tripInfoObject = {
+            tripLocation: getDOMElement('location-input').value,
+            tripHeaderPhoto: localStorage.getItem('tripHeaderPhoto'),
+            tripStartDate: getDOMElement('from-date-input').value,
+            tripEndDate: getDOMElement('to-date-input').value,
+            travelledBy: '',
+            stayedIn: '',
+            travelledWith: '',
+            attractionName: '',
+            attractionCost: '',
+            attractionCostCurrency: '',
+            eventName: '',
+            eventLocation: '',
+            eventDate: '',
+            eventCost: ''
+        };
+
+        const getTravelledByValue = document.querySelector('input[name="TravelledBy"]:checked');
+        if (getTravelledByValue != null) {
+            tripInfoObject.travelledBy = getTravelledByValue.value;
+        }
+        const getStayedInValue = document.querySelector('input[name="StayedIn"]:checked');
+        if (getStayedInValue != null) {
+            tripInfoObject.stayedIn = getStayedInValue.value;
+        }
+        const getTravelledWithValue = document.querySelector('input[name="TravelledWith"]:checked');
+        if (getTravelledWithValue != null) {
+            tripInfoObject.travelledWith = getTravelledWithValue.value;
+        }
+        tripInfoObject.attractionName = getDOMElement('visited-attraction-name').value;
+        tripInfoObject.attractionCost = getDOMElement('visited-attraction-cost').value; //return a string representing a number
+        tripInfoObject.attractionCostCurrency = getDOMElement('currency-select').value;
+        tripInfoObject.eventName = getDOMElement('attended-event-name').value;
+        tripInfoObject.eventLocation = getDOMElement('attended-event-location').value;
+        tripInfoObject.eventDate = getDOMElement('attended-event-date').value;
+        tripInfoObject.eventCost = getDOMElement('attended-event-cost').value; //return a string representing a number
+
+        tripInfo.push(tripInfoObject);
+        localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
+    }
+    localStorage.removeItem('tripHeaderPhoto');
 }

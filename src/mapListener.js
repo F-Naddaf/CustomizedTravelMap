@@ -5,8 +5,8 @@ import { createTheTab } from './views/profileViews.js';
 import { createFormElement } from './views/formViews.js';
 import { createFiguresTabElements } from './views/figuresTabViews.js';
 import { createMapTabElements } from './views/mapTabViews.js';
-import { showFiguresTab, showMapTab, getFormData } from './mapHandler.js';
-import { createLocationCard } from './views/locationCardViews.js';
+import { showFiguresTab, showMapTab, chooseLocation } from './mapHandler.js';
+
 
 export const signIn = () => {
     getIPData();
@@ -21,8 +21,7 @@ export const displayForm = () => {
 }
 
 export const saveTrip = (tripInfo) => {
-    getFormData(tripInfo);
-    createLocationCard();
+    chooseLocation(tripInfo);
 }
 
 export const createFiguresTab = () => {
